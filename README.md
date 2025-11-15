@@ -43,8 +43,8 @@ A modern, minimal portfolio website built with Astro.js featuring a beautiful pu
 
 ### Prerequisites
 
-- Node.js 18 or higher
-- npm or yarn
+- Node.js 20 LTS or higher
+- pnpm 9 or higher
 
 ### Installation
 
@@ -53,11 +53,14 @@ A modern, minimal portfolio website built with Astro.js featuring a beautiful pu
 git clone https://github.com/philtremblay/philtremblay.github.io.git
 cd philtremblay.github.io
 
+# Install pnpm if you don't have it
+npm install -g pnpm
+
 # Install dependencies
-npm install
+pnpm install
 
 # Start development server
-npm run dev
+pnpm run dev
 ```
 
 The site will be available at `http://localhost:4321`
@@ -65,9 +68,9 @@ The site will be available at `http://localhost:4321`
 ### Available Scripts
 
 ```bash
-npm run dev       # Start development server
-npm run build     # Build for production
-npm run preview   # Preview production build locally
+pnpm run dev       # Start development server
+pnpm run build     # Build for production
+pnpm run preview   # Preview production build locally
 ```
 
 ## 🎨 Customization
@@ -132,7 +135,7 @@ This site is configured for GitHub Pages deployment:
 
 1. **Build the site**:
    ```bash
-   npm run build
+   pnpm run build
    ```
 
 2. **The `dist/` folder contains your static site**
@@ -145,66 +148,38 @@ This site is configured for GitHub Pages deployment:
 
 ### GitHub Actions (Automated)
 
-Create `.github/workflows/deploy.yml`:
+The repository includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that automatically builds and deploys on push to `main`:
 
-```yaml
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18
-      - run: npm ci
-      - run: npm run build
-      - uses: actions/upload-pages-artifact@v1
-        with:
-          path: ./dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/deploy-pages@v1
-        id: deployment
-```
+- Uses Node.js 20 LTS
+- Uses pnpm for fast, efficient installs
+- Includes pnpm store caching for faster builds
+- Deploys to GitHub Pages automatically
 
 ### Other Hosting Options
 
 **Vercel**:
 ```bash
-npm i -g vercel
+pnpm i -g vercel
 vercel
 ```
 
 **Netlify**:
 ```bash
-npm run build
+pnpm run build
 # Deploy the dist/ folder via Netlify UI or CLI
 ```
 
 **Self-Hosting**:
 ```bash
-npm run build
+pnpm run build
 # Copy dist/ folder to your web server
 ```
 
 ## 🛠️ Tech Stack
 
 - **Framework**: [Astro](https://astro.build/) - The web framework for content-driven websites
+- **Package Manager**: [pnpm](https://pnpm.io/) - Fast, disk space efficient package manager
+- **Runtime**: Node.js 20 LTS
 - **Styling**: Vanilla CSS with CSS Variables (no preprocessors needed!)
 - **Icons**: Inline SVG for performance
 - **Typography**: System font stack for fast loading
