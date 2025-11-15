@@ -1,0 +1,175 @@
+# Philippe Tremblay - Portfolio Website
+
+> Modern, minimal portfolio website built with Astro.js featuring the Messorem purple theme.
+> Static site showcasing software engineering expertise, projects, and professional background.
+
+## Project Overview
+
+A personal portfolio for Philippe Tremblay, Founder of Bounce P2P Payment App and McGill Software Engineering graduate. Built with Astro.js for maximum performance and SEO. Features a beautiful purple theme inspired by Messorem Club Cycliste, dark/light mode toggle, and fully responsive design.
+
+Live site: https://philtremblay.github.io
+Framework: Astro 5.15.8
+Package Manager: pnpm 10.22.0
+Node Version: 24.11.1
+
+## Architecture
+
+This is an Astro.js static site using:
+- File-based routing in /src/pages/
+- Component-based UI in /src/components/
+- Layout templates in /src/layouts/
+- Global CSS with CSS variables for theming
+- Zero JavaScript by default (Astro islands architecture)
+- Minimal client-side JS only for theme toggle
+
+### Key Technical Patterns
+
+- **Static Generation**: All pages pre-rendered at build time to /dist/
+- **Type Safety**: TypeScript configuration with strict mode
+- **Theme System**: CSS variables + data-theme attribute + localStorage persistence
+- **SEO**: Meta tags, Open Graph, canonical URLs in BaseLayout
+- **Responsive Design**: Mobile-first CSS with breakpoints at 768px
+
+## Key Files
+
+### Configuration
+- /package.json - Dependencies and build scripts (Astro 5.15.8 only)
+- /astro.config.mjs - Astro config for GitHub Pages (site, base path)
+- /tsconfig.json - TypeScript strict mode configuration
+- /.nvmrc - Node version specification (24.11.1)
+- /.pnpmrc - pnpm configuration
+
+### Layouts & Components
+- /src/layouts/BaseLayout.astro - Main layout with SEO, meta tags, Header, Footer
+  * Accepts title and description props
+  * Includes global.css import
+  * Sets up canonical URLs and Open Graph tags
+- /src/components/Header.astro - Fixed navigation with theme toggle and mobile menu
+  * Theme toggle with localStorage persistence
+  * Gradient logo text effect
+  * Responsive navigation (hamburger menu on mobile)
+- /src/components/Footer.astro - Site footer with social links and navigation
+  * Social icons: LinkedIn, GitHub, Instagram
+  * Copyright notice with dynamic year
+
+### Pages
+- /src/pages/index.astro - Homepage with hero, expertise cards, and featured projects
+  * Hero section with gradient text and CTAs
+  * 3-column expertise grid (Cloud Architecture, Kubernetes, Cycling)
+  * Featured project cards (Bounce P2P Payment App)
+  * Extensive component-scoped styling
+- /src/pages/projects/index.astro - Projects listing page
+  * Project cards with status badges, tags, and descriptions
+- /src/pages/blog/index.astro - Blog listing page (structure prepared, not populated)
+
+### Styles
+- /src/styles/global.css - Global styles and CSS variables
+  * Messorem purple color palette (--purple-50 through --purple-900)
+  * Light/dark theme color tokens
+  * Spacing scale (--space-1 through --space-32)
+  * Typography system (system fonts)
+  * Utility classes (container, section, grid, cards, buttons)
+  * Dark mode via [data-theme='dark'] attribute
+
+### Static Assets
+- /public/robots.txt - Search engine crawler instructions
+
+### CI/CD
+- /.github/workflows/deploy.yml - GitHub Actions workflow for automated deployment
+  * Triggers on push to main branch
+  * Uses Node 20, pnpm 9 with caching
+  * Builds to /dist/ and deploys to GitHub Pages
+
+## Color Palette (Messorem Purple Theme)
+
+Primary accent: --purple-600 (#9333ea)
+Light mode backgrounds: white, #fafafa, purple-50
+Dark mode backgrounds: #0f172a, #1e293b
+Text colors: Slate scale for hierarchy
+Borders: Light gray (#e2e8f0)
+
+All colors defined as CSS variables in /src/styles/global.css for easy customization.
+
+## Development Workflow
+
+### Setup
+```bash
+# Requires Node.js 24.11.1 (specified in .nvmrc)
+# Requires pnpm 10.22.0 (specified in package.json packageManager field)
+pnpm install
+```
+
+### Commands
+```bash
+pnpm run dev      # Start dev server at http://localhost:4321
+pnpm run build    # Build static site to /dist/
+pnpm run preview  # Preview production build locally
+```
+
+### Project Structure
+```
+/
+├── .github/workflows/    # GitHub Actions CI/CD
+├── public/              # Static assets (robots.txt)
+├── src/
+│   ├── components/      # Reusable UI components
+│   ├── layouts/         # Page layout templates
+│   ├── pages/           # File-based routing (index, projects, blog)
+│   ├── styles/          # Global CSS with theme variables
+│   └── env.d.ts        # TypeScript environment definitions
+├── astro.config.mjs    # Astro configuration
+├── package.json        # Dependencies and scripts
+├── pnpm-lock.yaml      # Lockfile for pnpm
+└── tsconfig.json       # TypeScript configuration
+```
+
+## Customization Guide
+
+### Personal Information
+- Update hero section in /src/pages/index.astro (lines 9-32)
+- Modify expertise cards in /src/pages/index.astro (lines 46-88)
+- Edit featured projects in /src/pages/index.astro (lines 102-136)
+- Update social links in /src/components/Footer.astro (lines 4-20)
+- Change default meta description in /src/layouts/BaseLayout.astro (line 13)
+
+### Theme Colors
+- Edit CSS variables in /src/styles/global.css (lines 9-18 for purple palette)
+- Change accent color by modifying --accent and --accent-hover variables
+- Dark mode colors controlled by [data-theme='dark'] selectors
+
+### Navigation
+- Edit navigation items in /src/components/Header.astro (lines 2-6)
+- Update footer navigation in /src/components/Footer.astro (lines 36-39)
+
+### Adding Blog Posts
+- Create markdown files in /src/content/blog/ (structure prepared)
+- Update /src/pages/blog/index.astro to list posts
+- Consider adding Astro content collections for type-safe blog posts
+
+## Deployment
+
+Automated via GitHub Actions on push to main branch:
+1. Workflow builds site with pnpm build
+2. Uploads /dist/ folder as GitHub Pages artifact
+3. Deploys to https://philtremblay.github.io
+
+Manual deployment: Build with `pnpm run build` and deploy /dist/ folder to any static host (Vercel, Netlify, Cloudflare Pages, etc.)
+
+## Recent Changes
+
+- 2025-11-15: Updated to Node.js 24.11.1 and pnpm 10.22.0 (latest versions)
+- 2025-11-15: Switched from npm to pnpm for faster installs
+- Complete redesign from vanilla HTML/CSS/JS to Astro.js framework
+- Implemented Messorem purple theme with dark/light mode
+- Added automated GitHub Pages deployment via GitHub Actions
+
+## Notes for AI Agents
+
+- This is a static site - no backend, API routes, or database
+- All content is hardcoded in .astro files (not using CMS or content collections yet)
+- Theme toggle uses client-side JavaScript in Header.astro (lines 196-220)
+- CSS is scoped by component except for global.css
+- Build output is excluded from git (see .gitignore for dist/, node_modules/)
+- Site is optimized for perfect Lighthouse scores (minimal CSS, zero JS overhead)
+- Personal information (name, LinkedIn, GitHub) is scattered across multiple files
+- Blog structure exists but is not populated with actual posts yet
