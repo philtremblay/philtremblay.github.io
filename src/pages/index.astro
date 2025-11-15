@@ -1,0 +1,345 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout>
+  <!-- Hero Section -->
+  <section class="hero section">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span>Available for opportunities</span>
+        </div>
+        <h1 class="hero-title">
+          Software Engineer<br />
+          & <span class="text-gradient">Cyclist</span>
+        </h1>
+        <p class="hero-description">
+          Building innovative software solutions by day, racing bikes with
+          <a href="https://www.instagram.com/messoremclubcycliste/" target="_blank" rel="noopener">Messo Rem Club Cycliste</a>
+          by weekend. Passionate about clean code, high performance, and pushing limits—both on and off the bike.
+        </p>
+        <div class="hero-cta">
+          <a href="/projects" class="btn btn-primary btn-lg">
+            View Projects
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          </a>
+          <a href="#about" class="btn btn-secondary btn-lg">Learn More</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">What I Do</h2>
+        <p class="section-subtitle">
+          Combining technical expertise with relentless drive
+        </p>
+      </div>
+
+      <div class="grid grid-3">
+        <div class="card">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="16 18 22 12 16 6"></polyline>
+              <polyline points="8 6 2 12 8 18"></polyline>
+            </svg>
+          </div>
+          <h3>Software Engineering</h3>
+          <p>
+            Crafting scalable, efficient solutions with modern technologies.
+            Focused on clean architecture, performance optimization, and delivering measurable value.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+          </div>
+          <h3>Competitive Cycling</h3>
+          <p>
+            Racing with <a href="https://www.instagram.com/messoremclubcycliste/" target="_blank" rel="noopener">Messo Rem Club Cycliste</a>.
+            Applying the same dedication to training and competition as I do to engineering excellence.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+              <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+          </div>
+          <h3>Continuous Growth</h3>
+          <p>
+            Always learning, always improving. Whether it's mastering a new framework,
+            optimizing algorithms, or shaving seconds off race times.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Section -->
+  <section class="projects-preview section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Featured Work</h2>
+        <p class="section-subtitle">
+          A selection of recent projects and experiments
+        </p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">🚀</div>
+            <div class="project-meta">
+              <span class="project-status">In Progress</span>
+            </div>
+          </div>
+          <h3 class="project-title">Coming Soon</h3>
+          <p class="project-description">
+            Exciting projects in development. Check back soon to see what I'm building.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Innovation</span>
+            <span class="tag">Engineering</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-icon">💡</div>
+            <div class="project-meta">
+              <span class="project-status">Planned</span>
+            </div>
+          </div>
+          <h3 class="project-title">More to Come</h3>
+          <p class="project-description">
+            Building solutions that matter. Stay tuned for updates on my latest work.
+          </p>
+          <div class="project-tags">
+            <span class="tag">Open Source</span>
+            <span class="tag">Tools</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-center">
+        <a href="/projects" class="btn btn-primary">
+          View All Projects
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+  }
+
+  .hero-content {
+    max-width: 800px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    font-weight: 600;
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.5;
+    }
+  }
+
+  .hero-title {
+    margin-bottom: var(--space-6);
+    line-height: 1.1;
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-8);
+    max-width: 600px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: var(--space-4);
+    flex-wrap: wrap;
+  }
+
+  /* About Section */
+  .about {
+    background: var(--bg-secondary);
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--space-16);
+  }
+
+  .section-title {
+    margin-bottom: var(--space-3);
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+    color: var(--text-muted);
+    max-width: none;
+    margin: 0 auto;
+  }
+
+  .card {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-5);
+  }
+
+  .card h3 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-4);
+    color: var(--text-primary);
+  }
+
+  .card p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* Projects Preview */
+  .projects-preview {
+    background: var(--bg-accent);
+  }
+
+  .project-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    transition: all var(--transition-base);
+    cursor: pointer;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--accent);
+  }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-5);
+  }
+
+  .project-icon {
+    font-size: 2.5rem;
+  }
+
+  .project-status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+  }
+
+  .project-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-3);
+    color: var(--text-primary);
+  }
+
+  .project-description {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-5);
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+
+  .tag {
+    padding: var(--space-1) var(--space-3);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .cta-center {
+    text-align: center;
+    margin-top: var(--space-12);
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-cta {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .hero-cta .btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>

@@ -1,0 +1,238 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Blog - Philippe Tremblay"
+  description="Insights on software engineering, performance optimization, cycling, and continuous improvement."
+>
+  <!-- Hero Section -->
+  <section class="hero section">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-breadcrumb">
+          <a href="/">Home</a>
+          <span>/</span>
+          <span>Blog</span>
+        </div>
+        <h1 class="hero-title">
+          Thoughts & <span class="text-gradient">Writings</span>
+        </h1>
+        <p class="hero-description">
+          Insights on software engineering, performance optimization, cycling,
+          and the parallels between building great software and racing bikes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Coming Soon Section -->
+  <section class="coming-soon section">
+    <div class="container">
+      <div class="coming-soon-content">
+        <div class="coming-soon-icon">
+          <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+        </div>
+
+        <h2>Coming Soon</h2>
+        <p>
+          The blog is currently under construction. I'll be sharing articles about
+          software architecture, development best practices, performance tuning,
+          and lessons learned from competitive cycling.
+        </p>
+
+        <div class="topics-preview">
+          <h3>Topics to Expect</h3>
+          <div class="topics-grid">
+            <div class="topic-card">
+              <div class="topic-icon">💻</div>
+              <h4>Software Engineering</h4>
+              <p>Architecture, design patterns, and clean code principles</p>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-icon">⚡</div>
+              <h4>Performance</h4>
+              <p>Optimization techniques and profiling strategies</p>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-icon">🚴</div>
+              <h4>Cycling & Training</h4>
+              <p>Race reports, training insights, and parallels to engineering</p>
+            </div>
+
+            <div class="topic-card">
+              <div class="topic-icon">📚</div>
+              <h4>Learning</h4>
+              <p>Continuous improvement and skill development</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cta-buttons">
+          <a href="/" class="btn btn-primary">Back to Home</a>
+          <a href="/projects" class="btn btn-secondary">View Projects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-12);
+    background: var(--bg-secondary);
+  }
+
+  .hero-breadcrumb {
+    display: flex;
+    gap: var(--space-2);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-breadcrumb a {
+    color: var(--accent);
+    transition: color var(--transition-base);
+  }
+
+  .hero-breadcrumb a:hover {
+    color: var(--accent-hover);
+  }
+
+  .hero-content {
+    max-width: 800px;
+  }
+
+  .hero-title {
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 700px;
+  }
+
+  /* Coming Soon Section */
+  .coming-soon {
+    padding: var(--space-24) 0;
+  }
+
+  .coming-soon-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .coming-soon-icon {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto var(--space-8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: var(--radius-2xl);
+  }
+
+  .coming-soon-content h2 {
+    font-size: 3rem;
+    margin-bottom: var(--space-6);
+  }
+
+  .coming-soon-content > p {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto var(--space-16);
+  }
+
+  /* Topics Preview */
+  .topics-preview {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-12);
+    margin-bottom: var(--space-12);
+  }
+
+  .topics-preview h3 {
+    font-size: 1.75rem;
+    margin-bottom: var(--space-8);
+    text-align: center;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-6);
+    text-align: left;
+  }
+
+  .topic-card {
+    background: var(--bg-primary);
+    padding: var(--space-6);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border);
+    transition: all var(--transition-base);
+  }
+
+  .topic-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--accent-light);
+  }
+
+  .topic-icon {
+    font-size: 2rem;
+    margin-bottom: var(--space-3);
+  }
+
+  .topic-card h4 {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-2);
+    color: var(--text-primary);
+  }
+
+  .topic-card p {
+    font-size: 0.9375rem;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  /* CTA Buttons */
+  .cta-buttons {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .coming-soon-content h2 {
+      font-size: 2rem;
+    }
+
+    .topics-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cta-buttons {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .cta-buttons .btn {
+      width: 100%;
+    }
+  }
+</style>

@@ -1,0 +1,347 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    title: 'Project Alpha',
+    description: 'A scalable web application built with modern frameworks, focused on performance and exceptional user experience.',
+    icon: '🚀',
+    tags: ['React', 'Node.js', 'PostgreSQL'],
+    status: 'In Development',
+    link: '#',
+  },
+  {
+    title: 'Performance Tool',
+    description: 'CLI tool for analyzing and optimizing application performance. Saves hours of manual debugging and profiling.',
+    icon: '⚡',
+    tags: ['Go', 'CLI', 'DevOps'],
+    status: 'Active',
+    link: '#',
+  },
+  {
+    title: 'Design System',
+    description: 'Comprehensive design system for consistent UI/UX across products. Component library built with accessibility in mind.',
+    icon: '🎨',
+    tags: ['React', 'TypeScript', 'Storybook'],
+    status: 'Ongoing',
+    link: '#',
+  },
+  {
+    title: 'Data Visualization',
+    description: 'Interactive dashboard for real-time data analysis with beautiful charts that tell compelling stories.',
+    icon: '📊',
+    tags: ['D3.js', 'Python', 'Analytics'],
+    status: 'Completed',
+    link: '#',
+  },
+  {
+    title: 'Security Scanner',
+    description: 'Automated security scanning tool for web applications. Identifies vulnerabilities before they become problems.',
+    icon: '🔒',
+    tags: ['Security', 'Python', 'Automation'],
+    status: 'Beta',
+    link: '#',
+  },
+  {
+    title: 'API Gateway',
+    description: 'Microservices API gateway with rate limiting, caching, and monitoring. Handles millions of requests efficiently.',
+    icon: '🌐',
+    tags: ['Microservices', 'Redis', 'Docker'],
+    status: 'Production',
+    link: '#',
+  },
+];
+---
+
+<BaseLayout
+  title="Projects - Philippe Tremblay"
+  description="A collection of my work, experiments, and open-source contributions."
+>
+  <!-- Hero Section -->
+  <section class="hero section">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-breadcrumb">
+          <a href="/">Home</a>
+          <span>/</span>
+          <span>Projects</span>
+        </div>
+        <h1 class="hero-title">
+          Featured <span class="text-gradient">Projects</span>
+        </h1>
+        <p class="hero-description">
+          A collection of my work, experiments, and open-source contributions.
+          Each project represents a problem solved, a new skill learned, or an idea brought to life.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Grid -->
+  <section class="projects-section section">
+    <div class="container">
+      <div class="projects-grid">
+        {projects.map((project) => (
+          <article class="project-card">
+            <div class="project-header">
+              <div class="project-icon">{project.icon}</div>
+              <span class="project-status">{project.status}</span>
+            </div>
+
+            <h3 class="project-title">{project.title}</h3>
+            <p class="project-description">{project.description}</p>
+
+            <div class="project-tags">
+              {project.tags.map((tag) => (
+                <span class="tag">{tag}</span>
+              ))}
+            </div>
+
+            <div class="project-footer">
+              <a href={project.link} class="project-link">
+                View Project
+                <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+                </svg>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- CTA Section -->
+      <div class="projects-cta">
+        <div class="cta-card">
+          <h3>Want to collaborate?</h3>
+          <p>
+            I'm always interested in hearing about new projects and opportunities.
+            Let's build something great together.
+          </p>
+          <div class="cta-buttons">
+            <a href="https://github.com/philtremblay" target="_blank" rel="noopener" class="btn btn-primary">
+              View on GitHub
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/in/philippe-tremblay-36219485/" target="_blank" rel="noopener" class="btn btn-secondary">
+              Connect on LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  /* Hero Section */
+  .hero {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-12);
+  }
+
+  .hero-breadcrumb {
+    display: flex;
+    gap: var(--space-2);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-breadcrumb a {
+    color: var(--accent);
+    transition: color var(--transition-base);
+  }
+
+  .hero-breadcrumb a:hover {
+    color: var(--accent-hover);
+  }
+
+  .hero-content {
+    max-width: 800px;
+  }
+
+  .hero-title {
+    margin-bottom: var(--space-6);
+  }
+
+  .hero-description {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+    max-width: 700px;
+  }
+
+  /* Projects Section */
+  .projects-section {
+    background: var(--bg-secondary);
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-24);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--space-8);
+    margin-bottom: var(--space-16);
+  }
+
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .project-card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    padding: var(--space-8);
+    transition: all var(--transition-base);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--accent);
+  }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-5);
+  }
+
+  .project-icon {
+    font-size: 2.5rem;
+    line-height: 1;
+  }
+
+  .project-status {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: var(--space-1) var(--space-3);
+    border-radius: var(--radius-full);
+  }
+
+  .project-title {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-3);
+    color: var(--text-primary);
+  }
+
+  .project-description {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-5);
+    flex-grow: 1;
+  }
+
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+
+  .tag {
+    padding: var(--space-1) var(--space-3);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-full);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+  }
+
+  .project-footer {
+    margin-top: auto;
+    padding-top: var(--space-4);
+    border-top: 1px solid var(--border);
+  }
+
+  .project-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    transition: all var(--transition-base);
+  }
+
+  .project-link:hover {
+    gap: var(--space-3);
+    color: var(--accent-hover);
+  }
+
+  /* CTA Section */
+  .projects-cta {
+    margin-top: var(--space-16);
+  }
+
+  .cta-card {
+    background: linear-gradient(135deg, var(--purple-600) 0%, var(--purple-500) 100%);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-12);
+    text-align: center;
+    color: white;
+  }
+
+  .cta-card h3 {
+    font-size: 2rem;
+    margin-bottom: var(--space-4);
+    color: white;
+  }
+
+  .cta-card p {
+    font-size: 1.125rem;
+    margin-bottom: var(--space-8);
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: var(--space-4);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .cta-card .btn-primary {
+    background: white;
+    color: var(--purple-600);
+  }
+
+  .cta-card .btn-primary:hover {
+    background: rgba(255, 255, 255, 0.9);
+  }
+
+  .cta-card .btn-secondary {
+    border-color: white;
+    color: white;
+  }
+
+  .cta-card .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  @media (max-width: 768px) {
+    .cta-buttons {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    .cta-buttons .btn {
+      width: 100%;
+    }
+  }
+</style>
