@@ -36,15 +36,14 @@ A modern, minimal portfolio website built with Astro.js featuring a beautiful pu
 │       ├── blog/
 │       └── projects/
 ├── astro.config.mjs     # Astro configuration
-└── package.json
+└── deno.json            # Deno configuration and tasks
 ```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 20 LTS or higher
-- pnpm 9 or higher
+- Deno 2.x or higher
 
 ### Installation
 
@@ -53,14 +52,14 @@ A modern, minimal portfolio website built with Astro.js featuring a beautiful pu
 git clone https://github.com/philtremblay/philtremblay.github.io.git
 cd philtremblay.github.io
 
-# Install pnpm if you don't have it
-npm install -g pnpm
+# Install Deno if you don't have it
+# macOS/Linux:
+curl -fsSL https://deno.land/install.sh | sh
+# Windows:
+# irm https://deno.land/install.ps1 | iex
 
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm run dev
+# Start development server (dependencies install automatically)
+deno task dev
 ```
 
 The site will be available at `http://localhost:4321`
@@ -68,10 +67,13 @@ The site will be available at `http://localhost:4321`
 ### Available Scripts
 
 ```bash
-pnpm run dev       # Start development server
-pnpm run build     # Build for production
-pnpm run preview   # Preview production build locally
+deno task dev       # Start development server
+deno task build     # Build for production
+deno task preview   # Preview production build locally
+deno task check     # Check Astro project for errors
 ```
+
+**Note**: Deno automatically installs and caches npm dependencies. No separate install step needed!
 
 ## 🎨 Customization
 
@@ -131,11 +133,11 @@ Your content here...
 
 ### GitHub Pages (Recommended)
 
-This site is configured for GitHub Pages deployment:
+This site is configured for GitHub Pages deployment with Deno:
 
 1. **Build the site**:
    ```bash
-   pnpm run build
+   deno task build
    ```
 
 2. **The `dist/` folder contains your static site**
@@ -150,40 +152,47 @@ This site is configured for GitHub Pages deployment:
 
 The repository includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that automatically builds and deploys on push to `main`:
 
-- Uses Node.js 20 LTS
-- Uses pnpm for fast, efficient installs
-- Includes pnpm store caching for faster builds
+- Uses Deno 2.x runtime
+- Automatic dependency caching for faster builds
 - Deploys to GitHub Pages automatically
+- No manual dependency installation needed
 
 ### Other Hosting Options
 
 **Vercel**:
 ```bash
-pnpm i -g vercel
-vercel
+deno task build
+# Deploy the dist/ folder via Vercel UI or CLI
 ```
 
 **Netlify**:
 ```bash
-pnpm run build
+deno task build
 # Deploy the dist/ folder via Netlify UI or CLI
 ```
 
 **Self-Hosting**:
 ```bash
-pnpm run build
+deno task build
 # Copy dist/ folder to your web server
 ```
 
 ## 🛠️ Tech Stack
 
 - **Framework**: [Astro](https://astro.build/) - The web framework for content-driven websites
-- **Package Manager**: [pnpm](https://pnpm.io/) - Fast, disk space efficient package manager
-- **Runtime**: Node.js 20 LTS
+- **Runtime**: [Deno](https://deno.com/) - Modern, secure JavaScript/TypeScript runtime
 - **Styling**: Vanilla CSS with CSS Variables (no preprocessors needed!)
 - **Icons**: Inline SVG for performance
 - **Typography**: System font stack for fast loading
 - **Deployment**: GitHub Pages / Vercel / Netlify
+
+### Why Deno?
+
+- ✅ **No separate install step** - Dependencies are automatically cached
+- ✅ **Faster startup** - Built-in TypeScript support
+- ✅ **Modern tooling** - All-in-one runtime with formatting, linting, and testing
+- ✅ **Secure by default** - Explicit permissions model
+- ✅ **npm compatibility** - Works seamlessly with npm packages like Astro
 
 ## 🎯 Performance
 

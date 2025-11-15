@@ -1,0 +1,17 @@
+{
+  "tasks": {
+    "dev": "deno run -A npm:astro dev",
+    "start": "deno run -A npm:astro dev",
+    "build": "deno run -A npm:astro build",
+    "preview": "deno run -A npm:astro preview",
+    "check": "deno run -A npm:astro check"
+  },
+  "imports": {
+    "astro": "npm:astro@5.15.8"
+  },
+  "nodeModulesDir": "auto",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  }
+}
