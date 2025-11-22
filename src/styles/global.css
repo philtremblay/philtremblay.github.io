@@ -8,71 +8,84 @@
 }
 
 :root {
-  /* Messorem Purple - Used strategically as accent only */
+  /* Messorem Purple - Single accent color */
   --purple: #8159b8;
   --purple-dark: #6b449e;
   --purple-light: #9b75c9;
+  --purple-pale: #f5f2f8;
 
-  /* Neutral Base Colors - Primary palette */
-  --black: #0a0a0a;
-  --gray-900: #1a1a1a;
-  --gray-800: #2a2a2a;
-  --gray-700: #3a3a3a;
-  --gray-600: #525252;
-  --gray-500: #737373;
-  --gray-400: #a3a3a3;
-  --gray-300: #d4d4d4;
-  --gray-200: #e5e5e5;
-  --gray-100: #f5f5f5;
+  /* Scandinavian Neutral Palette - Light, airy, minimal */
   --white: #ffffff;
+  --gray-50: #fafafa;
+  --gray-100: #f5f5f5;
+  --gray-200: #eeeeee;
+  --gray-300: #e0e0e0;
+  --gray-400: #bdbdbd;
+  --gray-500: #9e9e9e;
+  --gray-600: #757575;
+  --gray-700: #616161;
+  --gray-800: #424242;
+  --gray-900: #212121;
+  --black: #000000;
 
   /* Semantic colors */
-  --bg-primary: var(--white);
-  --bg-secondary: var(--gray-100);
-  --text-primary: var(--black);
-  --text-secondary: var(--gray-600);
-  --text-muted: var(--gray-500);
+  --bg: var(--white);
+  --bg-subtle: var(--gray-50);
+  --bg-muted: var(--gray-100);
+  --text: var(--gray-900);
+  --text-medium: var(--gray-700);
+  --text-light: var(--gray-600);
+  --text-subtle: var(--gray-500);
   --border: var(--gray-200);
+  --border-subtle: var(--gray-100);
   --accent: var(--purple);
-  --accent-hover: var(--purple-dark);
 
-  /* Typography */
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Arial', system-ui, sans-serif;
-  --font-display: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Arial', system-ui, sans-serif;
+  /* Typography - Clean sans-serif for Scandinavian feel */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Helvetica Neue', system-ui, sans-serif;
 
-  /* Spacing - Generous scale inspired by bypg.com */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-20: 5rem;
-  --space-24: 6rem;
-  --space-32: 8rem;
-  --space-40: 10rem;
-  --space-48: 12rem;
-  --space-64: 16rem;
+  /* Modular spacing scale - 8px base (mode.com inspired) */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+  --space-32: 8rem;     /* 128px */
+  --space-40: 10rem;    /* 160px */
+  --space-48: 12rem;    /* 192px */
 
-  /* Border radius */
-  --radius: 0.5rem;
-  --radius-full: 9999px;
+  /* Container widths */
+  --container-sm: 640px;
+  --container-md: 768px;
+  --container-lg: 1024px;
+  --container-xl: 1248px;
+
+  /* Border radius - Subtle, Scandinavian */
+  --radius-sm: 0.25rem;
+  --radius: 0.375rem;
+  --radius-lg: 0.5rem;
 
   /* Transitions */
-  --transition: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 [data-theme='dark'] {
-  --bg-primary: var(--black);
-  --bg-secondary: var(--gray-900);
-  --text-primary: var(--white);
-  --text-secondary: var(--gray-400);
-  --text-muted: var(--gray-500);
-  --border: var(--gray-800);
+  --bg: var(--gray-900);
+  --bg-subtle: var(--gray-800);
+  --bg-muted: var(--gray-700);
+  --text: var(--gray-50);
+  --text-medium: var(--gray-300);
+  --text-light: var(--gray-400);
+  --text-subtle: var(--gray-500);
+  --border: var(--gray-700);
+  --border-subtle: var(--gray-800);
   --accent: var(--purple-light);
-  --accent-hover: var(--purple);
 }
 
 html {
@@ -83,56 +96,50 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: var(--bg-primary);
-  color: var(--text-primary);
+  background: var(--bg);
+  color: var(--text);
   line-height: 1.6;
-  font-size: 18px;
-  transition: background 0.3s ease, color 0.3s ease;
+  font-size: 16px;
+  font-weight: 400;
 }
 
-/* Typography - Large, bold, impactful */
+/* Typography - Clean, functional, Scandinavian */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-display);
   font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: var(--text-primary);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  color: var(--text);
 }
 
 h1 {
-  font-size: clamp(3rem, 10vw, 7rem);
+  font-size: clamp(2.5rem, 8vw, 5rem);
   font-weight: 600;
-  letter-spacing: -0.05em;
-  line-height: 1;
-  margin-bottom: var(--space-8);
+  letter-spacing: -0.035em;
+  line-height: 1.1;
 }
 
 h2 {
-  font-size: clamp(2.5rem, 7vw, 5rem);
+  font-size: clamp(2rem, 6vw, 3.5rem);
   font-weight: 600;
-  letter-spacing: -0.04em;
-  line-height: 1.05;
-  margin-bottom: var(--space-6);
+  letter-spacing: -0.03em;
+  line-height: 1.15;
 }
 
 h3 {
-  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
   font-weight: 600;
   letter-spacing: -0.02em;
-  margin-bottom: var(--space-4);
 }
 
 h4 {
-  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
   font-weight: 600;
-  margin-bottom: var(--space-3);
 }
 
 p {
-  color: var(--text-secondary);
+  color: var(--text-medium);
   margin-bottom: var(--space-6);
   max-width: 65ch;
-  font-size: 1.125rem;
   line-height: 1.7;
 }
 
@@ -142,14 +149,10 @@ a {
   transition: color var(--transition);
 }
 
-a:hover {
-  color: var(--accent);
-}
-
-/* Container */
+/* Container - 12-column grid inspired */
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: var(--container-xl);
   margin: 0 auto;
   padding: 0 var(--space-6);
 }
@@ -160,26 +163,27 @@ a:hover {
   }
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
   .container {
     padding: 0 var(--space-16);
   }
 }
 
-/* Buttons - Minimal, clean */
+/* Buttons - Minimal, functional */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-3);
-  padding: 1rem 2rem;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-6);
   font-weight: 500;
-  font-size: 1rem;
+  font-size: 0.9375rem;
   border-radius: var(--radius);
   cursor: pointer;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   transition: all var(--transition);
   text-decoration: none;
   letter-spacing: -0.01em;
+  white-space: nowrap;
 }
 
 .btn-primary {
@@ -189,65 +193,59 @@ a:hover {
 }
 
 .btn-primary:hover {
-  background: var(--accent-hover);
-  border-color: var(--accent-hover);
+  background: var(--purple-dark);
+  border-color: var(--purple-dark);
   color: var(--white);
 }
 
 .btn-secondary {
   background: transparent;
-  color: var(--text-primary);
+  color: var(--text);
   border-color: var(--border);
 }
 
 .btn-secondary:hover {
-  border-color: var(--text-primary);
+  border-color: var(--text);
+  background: var(--bg-subtle);
 }
 
 .btn-lg {
-  padding: 1.25rem 2.5rem;
-  font-size: 1.125rem;
+  padding: var(--space-4) var(--space-8);
+  font-size: 1rem;
 }
 
-/* Links with underline effect */
+/* Link with underline - Scandinavian simple */
 .link {
   position: relative;
-  color: var(--text-primary);
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1px;
+  transition: border-color var(--transition);
 }
 
-.link::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  width: 0;
-  height: 1px;
-  background: var(--accent);
-  transition: width var(--transition);
+.link:hover {
+  border-color: var(--accent);
+  color: var(--text);
 }
 
-.link:hover::after {
-  width: 100%;
-}
-
-/* Sections - Generous spacing */
+/* Sections - Generous Scandinavian spacing */
 .section {
-  padding: var(--space-32) 0;
+  padding: var(--space-24) 0;
 }
 
 @media (min-width: 768px) {
   .section {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
   }
 }
 
 @media (min-width: 1024px) {
   .section {
-    padding: var(--space-64) 0;
+    padding: var(--space-48) 0;
   }
 }
 
-/* Grid layouts */
+/* Grid system - Clean, functional */
 .grid {
   display: grid;
   gap: var(--space-12);
@@ -271,6 +269,22 @@ a:hover {
   }
 }
 
+/* Divider - Simple horizontal line */
+.divider {
+  height: 1px;
+  background: var(--border);
+  border: none;
+  margin: var(--space-12) 0;
+}
+
+/* Card - Minimal, clean */
+.card {
+  padding: var(--space-8);
+  background: var(--bg-subtle);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-subtle);
+}
+
 /* Utilities */
 .text-center {
   text-align: center;
@@ -280,15 +294,28 @@ a:hover {
   color: var(--accent);
 }
 
-.bg-secondary {
-  background: var(--bg-secondary);
+.bg-subtle {
+  background: var(--bg-subtle);
 }
 
-/* Animations */
+.bg-muted {
+  background: var(--bg-muted);
+}
+
+/* Max width prose container */
+.prose {
+  max-width: 65ch;
+}
+
+.prose-lg {
+  max-width: 75ch;
+}
+
+/* Animations - Subtle */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -297,5 +324,5 @@ a:hover {
 }
 
 .fade-in {
-  animation: fadeIn 0.6s ease-out;
+  animation: fadeIn 0.4s ease-out;
 }

@@ -3,140 +3,147 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout>
-  <!-- Hero Section - Large, bold, minimal -->
+  <!-- Hero Section - Minimal, clean, functional -->
   <section class="hero">
     <div class="container">
       <div class="hero-content">
-        <p class="hero-label">Founder • Builder • Cyclist</p>
-        <h1 class="hero-title">
-          Building the<br />
-          future of<br />
-          <span class="text-accent">payments</span>
-        </h1>
+        <p class="hero-label">Founder • Engineer • Cyclist</p>
+        <h1 class="hero-title">Building the future of payments</h1>
         <p class="hero-description">
-          Founder of Bounce, a peer-to-peer payment platform. McGill Software Engineering graduate specializing in cloud architecture and Kubernetes. Racing with Messorem Club Cycliste.
+          Founder of Bounce, a peer-to-peer payment platform. Cloud architect and Kubernetes expert. Racing with Messorem Club Cycliste.
         </p>
         <div class="hero-actions">
-          <a href="#work" class="btn btn-primary btn-lg">View Work</a>
-          <a href="https://www.linkedin.com/in/philippe-tremblay-36219485/" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">Connect</a>
+          <a href="#work" class="btn btn-primary">View Work</a>
+          <a href="https://www.linkedin.com/in/philippe-tremblay-36219485/" target="_blank" rel="noopener" class="btn btn-secondary">Connect</a>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Divider -->
+  <hr class="divider container" />
 
   <!-- Expertise Section -->
-  <section id="work" class="section bg-secondary">
+  <section id="work" class="section">
     <div class="container">
-      <div class="section-intro">
-        <h2>What I Do</h2>
-        <p class="section-lead">Specialized in cloud architecture, distributed systems, and building scalable applications.</p>
-      </div>
+      <h2 class="section-title">Expertise</h2>
 
-      <div class="grid grid-3">
-        <div class="expertise-card">
+      <div class="expertise-list">
+        <div class="expertise-item">
           <h3>Cloud Architecture</h3>
-          <p>Google Cloud Professional Architect and Data Engineer. Designing resilient systems that scale to millions of transactions.</p>
+          <p>Google Cloud Professional Architect and Data Engineer. Designing resilient, scalable systems that handle millions of transactions with precision.</p>
         </div>
 
-        <div class="expertise-card">
-          <h3>Kubernetes Expert</h3>
-          <p>Certified Kubernetes Administrator (CKA). Orchestrating containerized applications with precision and reliability.</p>
+        <div class="expertise-item">
+          <h3>Kubernetes</h3>
+          <p>Certified Kubernetes Administrator (CKA). Orchestrating containerized applications with reliability and efficiency at scale.</p>
         </div>
 
-        <div class="expertise-card">
-          <h3>Competitive Athlete</h3>
-          <p>Racing with <a href="https://www.instagram.com/messoremclubcycliste/" target="_blank" rel="noopener" class="link">Messorem Club Cycliste</a>. Discipline translates to excellence in engineering.</p>
+        <div class="expertise-item">
+          <h3>Cycling</h3>
+          <p>Competitive cyclist with <a href="https://www.instagram.com/messoremclubcycliste/" target="_blank" rel="noopener" class="link">Messorem Club Cycliste</a>. Discipline and precision on the bike translates to excellence in engineering.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Current Projects Section -->
+  <!-- Divider -->
+  <hr class="divider container" />
+
+  <!-- Projects Section -->
   <section class="section">
     <div class="container">
-      <div class="section-intro">
-        <h2>Current Focus</h2>
-      </div>
+      <h2 class="section-title">Current Work</h2>
 
-      <div class="projects-grid">
-        <div class="project-card">
+      <div class="projects-list">
+        <article class="project-item">
           <div class="project-header">
             <h3>Bounce</h3>
-            <span class="project-status">Active Development</span>
+            <span class="project-status">Active</span>
           </div>
           <p class="project-description">
-            A peer-to-peer payment application designed for seamless transactions. Building the core team with 4 key positions open including Backend Engineers, Financial Director, and SRE.
+            Peer-to-peer payment platform designed for seamless, secure transactions. Building the core team across backend engineering, finance, and infrastructure roles.
           </p>
-          <div class="project-stack">
-            <span>Fintech</span>
-            <span>P2P Payments</span>
-            <span>Kubernetes</span>
-            <span>Cloud Architecture</span>
-          </div>
-        </div>
+          <ul class="project-tags">
+            <li>Fintech</li>
+            <li>P2P Payments</li>
+            <li>Kubernetes</li>
+            <li>Cloud</li>
+          </ul>
+        </article>
 
-        <div class="project-card">
+        <article class="project-item">
           <div class="project-header">
             <h3>Open Source</h3>
             <span class="project-status">Ongoing</span>
           </div>
           <p class="project-description">
-            Contributing to cloud-native projects and developer tools. Exploring new ideas in infrastructure automation and distributed systems.
+            Contributing to cloud-native infrastructure and developer tooling. Exploring distributed systems and automation at scale.
           </p>
-          <div class="project-stack">
-            <span>Cloud Native</span>
-            <span>DevOps</span>
-            <span>Open Source</span>
-          </div>
-        </div>
+          <ul class="project-tags">
+            <li>Cloud Native</li>
+            <li>DevOps</li>
+            <li>Infrastructure</li>
+          </ul>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- CTA Section -->
-  <section class="section cta-section bg-secondary">
+  <!-- Divider -->
+  <hr class="divider container" />
+
+  <!-- Contact Section -->
+  <section class="section contact-section">
     <div class="container">
-      <div class="cta-content">
-        <h2>Let's Work Together</h2>
-        <p>Interested in collaborating or want to discuss cloud architecture, Kubernetes, or fintech?</p>
-        <a href="https://www.linkedin.com/in/philippe-tremblay-36219485/" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Get in Touch</a>
+      <div class="contact-content">
+        <h2>Let's Connect</h2>
+        <p class="contact-description">Open to discussing cloud architecture, Kubernetes, fintech, or cycling.</p>
+        <a href="https://www.linkedin.com/in/philippe-tremblay-36219485/" target="_blank" rel="noopener" class="btn btn-primary">Get in Touch</a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  /* Hero Section */
+  /* Hero Section - Clean, functional */
   .hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
     padding: var(--space-32) 0;
   }
 
+  @media (min-width: 768px) {
+    .hero {
+      padding: var(--space-48) 0;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+    }
+  }
+
   .hero-content {
-    max-width: 1000px;
+    max-width: 800px;
   }
 
   .hero-label {
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: var(--text-muted);
-    margin-bottom: var(--space-8);
+    color: var(--text-light);
+    margin-bottom: var(--space-6);
     font-weight: 500;
   }
 
   .hero-title {
-    margin-bottom: var(--space-8);
+    margin-bottom: var(--space-6);
+    max-width: 16ch;
   }
 
   .hero-description {
-    font-size: 1.25rem;
-    color: var(--text-secondary);
+    font-size: 1.125rem;
+    color: var(--text-medium);
     max-width: 600px;
-    margin-bottom: var(--space-12);
-    line-height: 1.6;
+    margin-bottom: var(--space-10);
+    line-height: 1.7;
   }
 
   .hero-actions {
@@ -145,73 +152,81 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     flex-wrap: wrap;
   }
 
-  /* Section Intro */
-  .section-intro {
-    max-width: 800px;
-    margin-bottom: var(--space-20);
+  /* Divider */
+  .divider {
+    max-width: var(--container-xl);
   }
 
-  .section-lead {
-    font-size: 1.5rem;
-    color: var(--text-secondary);
-    max-width: 700px;
-    margin-top: var(--space-6);
+  /* Section */
+  .section-title {
+    margin-bottom: var(--space-16);
   }
 
-  /* Expertise Cards */
-  .expertise-card {
-    padding: var(--space-12) 0;
-    border-top: 1px solid var(--border);
-  }
-
-  .expertise-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: var(--space-4);
-  }
-
-  .expertise-card p {
-    font-size: 1.0625rem;
-    margin: 0;
-  }
-
-  /* Projects Grid */
-  .projects-grid {
+  /* Expertise List - Clean, minimal */
+  .expertise-list {
     display: grid;
     gap: var(--space-16);
   }
 
   @media (min-width: 768px) {
-    .projects-grid {
-      grid-template-columns: repeat(2, 1fr);
+    .expertise-list {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-12);
     }
   }
 
-  .project-card {
-    padding: var(--space-12);
-    background: var(--bg-secondary);
-    border-radius: var(--radius);
-    transition: transform var(--transition);
+  .expertise-item h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-4);
+    font-weight: 600;
   }
 
-  .project-card:hover {
-    transform: translateY(-4px);
+  .expertise-item p {
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Projects List */
+  .projects-list {
+    display: grid;
+    gap: var(--space-12);
+  }
+
+  @media (min-width: 768px) {
+    .projects-list {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-16);
+    }
+  }
+
+  .project-item {
+    padding: var(--space-8);
+    background: var(--bg-subtle);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    transition: border-color var(--transition);
+  }
+
+  .project-item:hover {
+    border-color: var(--text-light);
   }
 
   .project-header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: var(--space-6);
+    align-items: baseline;
+    margin-bottom: var(--space-4);
     gap: var(--space-4);
   }
 
   .project-header h3 {
-    font-size: 2rem;
+    font-size: 1.5rem;
     margin: 0;
   }
 
   .project-status {
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--accent);
@@ -220,54 +235,54 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   }
 
   .project-description {
-    font-size: 1.0625rem;
-    margin-bottom: var(--space-8);
-    line-height: 1.7;
+    font-size: 0.9375rem;
+    line-height: 1.6;
+    margin-bottom: var(--space-6);
+    color: var(--text-medium);
   }
 
-  .project-stack {
+  .project-tags {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-3);
+    list-style: none;
+    padding: 0;
+    margin: 0;
   }
 
-  .project-stack span {
-    font-size: 0.875rem;
-    color: var(--text-muted);
-    padding: var(--space-2) var(--space-4);
-    background: var(--bg-primary);
-    border-radius: var(--radius-full);
+  .project-tags li {
+    font-size: 0.8125rem;
+    color: var(--text-light);
+    padding: var(--space-2) var(--space-3);
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
   }
 
-  /* CTA Section */
-  .cta-section {
+  /* Contact Section */
+  .contact-section {
     text-align: center;
   }
 
-  .cta-content {
-    max-width: 700px;
+  .contact-content {
+    max-width: 600px;
     margin: 0 auto;
   }
 
-  .cta-content h2 {
-    margin-bottom: var(--space-6);
+  .contact-content h2 {
+    margin-bottom: var(--space-4);
   }
 
-  .cta-content p {
-    font-size: 1.25rem;
-    margin: 0 auto var(--space-12);
-    max-width: 600px;
+  .contact-description {
+    font-size: 1.125rem;
+    margin: 0 auto var(--space-8);
+    color: var(--text-medium);
   }
 
   /* Responsive */
   @media (max-width: 768px) {
     .hero {
-      min-height: auto;
-      padding: var(--space-24) 0;
-    }
-
-    .hero-title {
-      font-size: clamp(2.5rem, 12vw, 4rem);
+      padding: var(--space-20) 0;
     }
 
     .hero-actions {
@@ -279,17 +294,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       justify-content: center;
     }
 
-    .expertise-card {
-      padding: var(--space-8) 0;
+    .expertise-list {
+      gap: var(--space-12);
     }
 
-    .project-card {
-      padding: var(--space-8);
+    .project-item {
+      padding: var(--space-6);
     }
 
     .project-header {
       flex-direction: column;
       align-items: flex-start;
+      gap: var(--space-2);
     }
   }
 </style>

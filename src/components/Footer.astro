@@ -13,41 +13,41 @@ const socialLinks = [
     <div class="footer-content">
       <div class="footer-info">
         <p class="footer-name">Philippe Tremblay</p>
-        <p class="footer-tagline">Founder & Software Engineer</p>
+        <p class="footer-role">Founder & Engineer</p>
       </div>
 
-      <div class="footer-links">
+      <nav class="footer-links">
         {socialLinks.map((link) => (
           <a href={link.href} target="_blank" rel="noopener noreferrer" class="footer-link">
             {link.name}
           </a>
         ))}
-      </div>
+      </nav>
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; {currentYear} Philippe Tremblay</p>
+      <p>&copy; {currentYear}</p>
     </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    background: var(--bg-secondary);
+    background: var(--bg);
     border-top: 1px solid var(--border);
-    padding: var(--space-24) 0 var(--space-12);
+    padding: var(--space-20) 0 var(--space-12);
   }
 
   @media (min-width: 768px) {
     .footer {
-      padding: var(--space-32) 0 var(--space-16);
+      padding: var(--space-24) 0 var(--space-16);
     }
   }
 
   .footer-content {
     display: flex;
     flex-direction: column;
-    gap: var(--space-12);
+    gap: var(--space-8);
     margin-bottom: var(--space-12);
   }
 
@@ -60,16 +60,16 @@ const socialLinks = [
   }
 
   .footer-name {
-    font-size: 1rem;
+    font-size: 0.9375rem;
     font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--space-2);
+    color: var(--text);
+    margin-bottom: var(--space-1);
   }
 
-  .footer-tagline {
-    color: var(--text-secondary);
+  .footer-role {
+    color: var(--text-light);
     margin: 0;
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
   }
 
   .footer-links {
@@ -79,14 +79,14 @@ const socialLinks = [
   }
 
   .footer-link {
-    color: var(--text-secondary);
-    font-size: 0.9375rem;
+    color: var(--text-light);
+    font-size: 0.875rem;
     font-weight: 500;
     transition: color var(--transition);
   }
 
   .footer-link:hover {
-    color: var(--text-primary);
+    color: var(--text);
   }
 
   .footer-bottom {
@@ -95,8 +95,8 @@ const socialLinks = [
   }
 
   .footer-bottom p {
-    color: var(--text-muted);
-    font-size: 0.875rem;
+    color: var(--text-subtle);
+    font-size: 0.8125rem;
     margin: 0;
   }
 </style>
