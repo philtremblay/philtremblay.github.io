@@ -9,11 +9,16 @@ interface Props {
 }
 
 const {
-  title = 'Philippe Tremblay - Software Engineer & Founder',
-  description = 'McGill Software Engineering graduate, Founder of Bounce P2P Payment App. Cloud architect, Kubernetes expert, and competitive cyclist with Messorem Club Cycliste.',
+  title = 'Philippe Tremblay — Software Engineer & Founder',
+  description =
+    'Software engineer and founder. Cloud architecture, Kubernetes, and distributed systems. McGill Software Engineering. Racing with Messorem Club Cycliste.',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+// Monogram favicon — squared, paper-and-ink, no emoji.
+const favicon =
+  "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231c1a16'/><text x='16' y='22' font-family='Georgia,serif' font-size='16' fill='%23f2efe9' text-anchor='middle'>PT</text></svg>";
 ---
 
 <!doctype html>
@@ -24,29 +29,67 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     <meta name="description" content={description} />
     <meta name="author" content="Philippe Tremblay" />
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalURL} />
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
 
     <link rel="canonical" href={canonicalURL} />
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚴</text></svg>" />
+    <link rel="icon" href={favicon} />
 
     <title>{title}</title>
+
+    <!-- Set the theme before first paint so there is no flash of the wrong
+         palette. Must stay inline and blocking. -->
+    <script is:inline>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme');
+          var theme =
+            saved ||
+            (window.matchMedia('(prefers-color-scheme: dark)').matches
+              ? 'dark'
+              : 'light');
+          document.documentElement.setAttribute('data-theme', theme);
+        } catch (e) {
+          document.documentElement.setAttribute('data-theme', 'light');
+        }
+      })();
+    </script>
   </head>
   <body>
+    <a href="#main" class="skip-link">Skip to content</a>
+
     <Header />
 
-    <main style="margin-top: 64px;">
+    <main id="main">
       <slot />
     </main>
 
     <Footer />
+
+    <style>
+      .skip-link {
+        position: absolute;
+        left: -9999px;
+        top: 0;
+        z-index: 100;
+        padding: var(--s-3) var(--s-4);
+        background: var(--ink);
+        color: var(--paper);
+        font-family: var(--font-mono);
+        font-size: var(--eyebrow);
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+      }
+
+      .skip-link:focus {
+        left: 0;
+      }
+    </style>
   </body>
 </html>

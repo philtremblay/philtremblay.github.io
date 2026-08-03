@@ -1,11 +1,13 @@
 # Philippe Tremblay - Portfolio Website
 
-> Modern, minimal portfolio website built with Astro.js featuring the Messorem purple theme.
+> Minimal portfolio website built with Astro.js in a Danish/Scandinavian minimalist design system.
 > Static site showcasing software engineering expertise, projects, and professional background.
 
 ## Project Overview
 
-A personal portfolio for Philippe Tremblay, Founder of Bounce P2P Payment App and McGill Software Engineering graduate. Built with Astro.js for maximum performance and SEO. Features a beautiful purple theme inspired by Messorem Club Cycliste, dark/light mode toggle, and fully responsive design.
+A personal portfolio for Philippe Tremblay — software engineer, founder, and McGill Software Engineering graduate. Built with Astro.js for performance and SEO. Danish minimalist design: warm paper background, hairline rules, mono eyebrow labels, one muted clay accent, light/dark toggle, fully responsive.
+
+Design lineage: structural cues (mono eyebrows, rule-separated rows, grain over flat colour, strict token system) adapted from hermes-agent.nousresearch.com; palette and typography are Danish minimalist rather than Hermes's electric blue.
 
 Live site: https://philtremblay.github.io
 Framework: Astro 5.15.8
@@ -25,7 +27,7 @@ This is an Astro.js static site using:
 
 - **Static Generation**: All pages pre-rendered at build time to /dist/
 - **Type Safety**: TypeScript configuration with strict mode
-- **Theme System**: CSS variables + data-theme attribute + localStorage persistence
+- **Theme System**: CSS variables + data-theme attribute + localStorage persistence, set by a blocking inline script in BaseLayout so there is no flash of the wrong palette
 - **SEO**: Meta tags, Open Graph, canonical URLs in BaseLayout
 - **Responsive Design**: Mobile-first CSS with breakpoints at 768px
 
@@ -42,7 +44,7 @@ This is an Astro.js static site using:
   * Accepts title and description props
   * Includes global.css import
   * Sets up canonical URLs and Open Graph tags
-- /src/components/Header.astro - Fixed navigation with theme toggle and mobile menu
+- /src/components/Header.astro - Sticky masthead. Two-row grid on mobile (wordmark+toggle, then nav) collapsing to one row at 640px. No hamburger, no nav JS.
   * Theme toggle with localStorage persistence
   * Gradient logo text effect
   * Responsive navigation (hamburger menu on mobile)
@@ -51,22 +53,23 @@ This is an Astro.js static site using:
   * Copyright notice with dynamic year
 
 ### Pages
-- /src/pages/index.astro - Homepage with hero, expertise cards, and featured projects
-  * Hero section with gradient text and CTAs
-  * 3-column expertise grid (Cloud Architecture, Kubernetes, Cycling)
-  * Featured project cards (Bounce P2P Payment App)
-  * Extensive component-scoped styling
-- /src/pages/projects/index.astro - Projects listing page
-  * Project cards with status badges, tags, and descriptions
-- /src/pages/blog/index.astro - Blog listing page (structure prepared, not populated)
+- /src/pages/index.astro - Homepage
+  * Hero (eyebrow, serif headline, lede, two CTAs)
+  * "What I do" — capabilities as hairline-separated rows
+  * "Current work" — active work with status markers and tags
+  * "Off the clock" — cycling; "Let's talk" — contact
+- /src/pages/projects/index.astro - Current work, previous ventures, credentials register
+- /src/pages/blog/index.astro - Notes index. Renders an empty state when `posts` is
+  empty rather than padding with placeholder posts.
 
 ### Styles
-- /src/styles/global.css - Global styles and CSS variables
-  * Messorem purple color palette (--purple-50 through --purple-900)
+- /src/styles/global.css - Design system: tokens, reset, type scale, shared primitives
+  * Paper/ink palette (--paper*, --ink*), hairlines (--rule*), one accent (--clay*)
   * Light/dark theme color tokens
-  * Spacing scale (--space-1 through --space-32)
-  * Typography system (system fonts)
-  * Utility classes (container, section, grid, cards, buttons)
+  * Spacing scale (--s-1 through --s-10), type scale (--step--1 through --step-4)
+  * Three system font stacks: --font-display, --font-sans, --font-mono
+  * Primitives: .shell, .section, .section-head, .rows/.row, .eyebrow, .index,
+    .btn, .link, .tags, .status
   * Dark mode via [data-theme='dark'] attribute
 
 ### Static Assets
@@ -78,13 +81,25 @@ This is an Astro.js static site using:
   * Uses Deno 2.9.4 (pinned) via denoland/setup-deno@v2, with dependency caching
   * Builds to /dist/ and deploys to GitHub Pages
 
-## Color Palette (Messorem Purple Theme)
+## Design System (Danish Minimalist)
 
-Primary accent: --purple-600 (#9333ea)
-Light mode backgrounds: white, #fafafa, purple-50
-Dark mode backgrounds: #0f172a, #1e293b
-Text colors: Slate scale for hierarchy
-Borders: Light gray (#e2e8f0)
+Never pure white, never pure black — everything is warm.
+
+Paper (light): --paper #f2efe9, --paper-raised #f8f6f1
+Ink (light): --ink #1c1a16, --ink-soft, --ink-muted, --ink-faint
+Paper (dark): --paper #17150f — warm near-black, NOT blue-black
+Hairlines: --rule / --rule-soft / --rule-strong (the layout is built from these)
+Accent: --clay #9d4b33 — exactly one, for state and emphasis only, never decoration
+
+Type — three faces, three jobs, zero webfont requests:
+  --font-display (serif)     headings, wordmark, row titles
+  --font-sans (grotesque)    body and UI
+  --font-mono                eyebrows, indices, tags, buttons, status
+
+Signature devices: .eyebrow (mono uppercase, 0.16em tracking), .index (01/02/03
+numerals), .rows/.row (hairline-separated rows replacing cards), .section-head
+(its rule doubles as the list's top edge), and a tiled SVG fractal-noise grain
+on body::before. Border radius is 0 — this system does not round corners.
 
 All colors defined as CSS variables in /src/styles/global.css for easy customization.
 
@@ -124,20 +139,19 @@ deno task check    # Type-check the Astro project
 ## Customization Guide
 
 ### Personal Information
-- Update hero section in /src/pages/index.astro (lines 9-32)
-- Modify expertise cards in /src/pages/index.astro (lines 46-88)
-- Edit featured projects in /src/pages/index.astro (lines 102-136)
-- Update social links in /src/components/Footer.astro (lines 4-20)
-- Change default meta description in /src/layouts/BaseLayout.astro (line 13)
+- Hero copy and the `capabilities` / `work` arrays are in the frontmatter of /src/pages/index.astro
+- Projects page data lives in the `current` / `previously` / `credentials` arrays in /src/pages/projects/index.astro
+- Social links are in the `links` array in /src/components/Footer.astro
+- Default title and meta description are in /src/layouts/BaseLayout.astro frontmatter
 
 ### Theme Colors
-- Edit CSS variables in /src/styles/global.css (lines 9-18 for purple palette)
+- Edit the token blocks at the top of /src/styles/global.css (:root and [data-theme='dark'])
 - Change accent color by modifying --accent and --accent-hover variables
 - Dark mode colors controlled by [data-theme='dark'] selectors
 
 ### Navigation
-- Edit navigation items in /src/components/Header.astro (lines 2-6)
-- Update footer navigation in /src/components/Footer.astro (lines 36-39)
+- Edit the `navItems` array in /src/components/Header.astro
+- Update the `links` array in /src/components/Footer.astro
 
 ### Adding Blog Posts
 - Create markdown files in /src/content/blog/ (structure prepared)
@@ -157,17 +171,21 @@ Manual deployment: Build with `deno task build` and deploy /dist/ folder to any 
 
 ## Recent Changes
 
+- 2026-08-03: Danish minimalist redesign — new token system, mono eyebrows, rule-separated
+  rows, grain texture; removed six fabricated placeholder projects and all emoji
 - 2026-08-03: Upgraded to Deno 2.9.4 and pinned the version in CI; committed deno.lock
 - 2025-11-16: Switched from Node.js/pnpm to the Deno runtime (deno.json replaces package.json)
 - Complete redesign from vanilla HTML/CSS/JS to Astro.js framework
-- Implemented Messorem purple theme with dark/light mode
+- Implemented light/dark mode via CSS variables
 - Added automated GitHub Pages deployment via GitHub Actions
 
 ## Notes for AI Agents
 
 - This is a static site - no backend, API routes, or database
-- All content is hardcoded in .astro files (not using CMS or content collections yet)
-- Theme toggle uses client-side JavaScript in Header.astro (lines 196-220)
+- All content is hardcoded in .astro page frontmatter (not using CMS or content collections yet)
+- Content is real. An earlier version of /projects listed six invented projects; they were
+  removed rather than restyled. Do not add placeholder work — leave sections short instead.
+- Theme is set pre-paint by an inline script in BaseLayout.astro; Header.astro only handles the click
 - CSS is scoped by component except for global.css
 - Build output is excluded from git (see .gitignore for dist/, node_modules/); deno.lock IS committed
 - Site is optimized for perfect Lighthouse scores (minimal CSS, zero JS overhead)

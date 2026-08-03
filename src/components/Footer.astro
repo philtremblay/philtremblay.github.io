@@ -1,102 +1,98 @@
 ---
 const currentYear = new Date().getFullYear();
 
-const socialLinks = [
+const links = [
   { name: 'LinkedIn', href: 'https://www.linkedin.com/in/philippe-tremblay-36219485/' },
   { name: 'GitHub', href: 'https://github.com/philtremblay' },
-  { name: 'Instagram', href: 'https://www.instagram.com/messoremclubcycliste/' },
+  { name: 'Messorem', href: 'https://www.instagram.com/messoremclubcycliste/' },
 ];
 ---
 
 <footer class="footer">
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-info">
-        <p class="footer-name">Philippe Tremblay</p>
-        <p class="footer-role">Founder & Engineer</p>
+  <div class="shell">
+    <div class="colophon">
+      <div class="mark">
+        <p class="name">Philippe Tremblay</p>
+        <p class="eyebrow">Montréal, Québec</p>
       </div>
 
-      <nav class="footer-links">
-        {socialLinks.map((link) => (
-          <a href={link.href} target="_blank" rel="noopener noreferrer" class="footer-link">
-            {link.name}
-          </a>
-        ))}
+      <nav class="links" aria-label="Elsewhere">
+        {
+          links.map((link) => (
+            <a
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="footer-link eyebrow"
+            >
+              {link.name}
+            </a>
+          ))
+        }
       </nav>
     </div>
 
-    <div class="footer-bottom">
-      <p>&copy; {currentYear}</p>
+    <div class="baseline">
+      <span class="eyebrow">&copy; {currentYear}</span>
+      <span class="eyebrow">Built with Astro</span>
     </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    background: var(--bg);
-    border-top: 1px solid var(--border);
-    padding: var(--space-16) 0 var(--space-10);
+    border-top: 1px solid var(--rule);
+    padding: var(--s-7) 0 var(--s-5);
+    margin-top: var(--s-8);
   }
 
-  @media (min-width: 768px) {
-    .footer {
-      padding: var(--space-20) 0 var(--space-12);
-    }
-  }
-
-  .footer-content {
+  .colophon {
     display: flex;
     flex-direction: column;
-    gap: var(--space-6);
-    margin-bottom: var(--space-8);
+    gap: var(--s-5);
+    padding-bottom: var(--s-5);
   }
 
-  @media (min-width: 768px) {
-    .footer-content {
+  @media (min-width: 640px) {
+    .colophon {
       flex-direction: row;
       justify-content: space-between;
       align-items: flex-start;
     }
   }
 
-  .footer-name {
-    font-size: 0.9375rem;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: var(--space-1);
+  .name {
+    font-family: var(--font-display);
+    font-size: var(--step-1);
+    color: var(--ink);
+    margin-bottom: var(--s-1);
   }
 
-  .footer-role {
-    color: var(--text-light);
-    margin: 0;
-    font-size: 0.875rem;
-  }
-
-  .footer-links {
+  .links {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-6);
+    gap: var(--s-5);
   }
 
   .footer-link {
-    color: var(--text-light);
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: color var(--transition);
+    color: var(--ink-muted);
+    transition: color var(--ease);
   }
 
   .footer-link:hover {
-    color: var(--text);
+    color: var(--clay);
   }
 
-  .footer-bottom {
-    padding-top: var(--space-6);
-    border-top: 1px solid var(--border);
+  .baseline {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--s-4);
+    padding-top: var(--s-4);
+    border-top: 1px solid var(--rule-soft);
+    color: var(--ink-faint);
   }
 
-  .footer-bottom p {
-    color: var(--text-subtle);
-    font-size: 0.8125rem;
-    margin: 0;
+  .baseline .eyebrow {
+    color: var(--ink-faint);
   }
 </style>

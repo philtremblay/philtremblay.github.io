@@ -1,311 +1,235 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const capabilities = [
+  {
+    title: 'Cloud Architecture',
+    body: 'Google Cloud Professional Architect and Professional Data Engineer. Designing systems that stay predictable as they grow — and stay legible to the people who have to run them.',
+  },
+  {
+    title: 'Kubernetes',
+    body: 'Certified Kubernetes Administrator. Orchestration, scheduling, and the unglamorous operational work that decides whether a platform holds up in production.',
+  },
+  {
+    title: 'Distributed Systems',
+    body: 'Data pipelines, event-driven services, and the failure modes that only surface at scale. Built on a McGill software engineering foundation.',
+  },
+];
+
+const work = [
+  {
+    title: 'New venture',
+    status: 'In progress',
+    body: 'Heads-down on something new. More when there is something worth showing.',
+    tags: ['Stealth'],
+  },
+  {
+    title: 'Open source',
+    status: 'Ongoing',
+    body: 'Contributions to cloud-native infrastructure and developer tooling — mostly the parts that make operating distributed systems less painful.',
+    tags: ['Cloud Native', 'Tooling', 'Infrastructure'],
+    idle: true,
+  },
+];
 ---
 
 <BaseLayout>
-  <!-- Hero Section - Minimal, clean, functional -->
+  <!-- ---------- Hero ---------- -->
   <section class="hero">
-    <div class="container">
-      <div class="hero-content">
-        <p class="hero-label">Founder • Engineer • Cyclist</p>
-        <h1 class="hero-title">Building the future of payments</h1>
-        <p class="hero-description">
-          Founder of Bounce, a peer-to-peer payment platform. Cloud architect and Kubernetes expert. Racing with Messorem Club Cycliste.
-        </p>
-        <div class="hero-actions">
-          <a href="#work" class="btn btn-primary">View Work</a>
-          <a href="https://www.linkedin.com/in/philippe-tremblay-36219485/" target="_blank" rel="noopener" class="btn btn-secondary">Connect</a>
-        </div>
+    <div class="shell">
+      <p class="eyebrow hero-eyebrow">Montréal, Québec — Engineer &amp; Founder</p>
+
+      <h1 class="hero-title">
+        Building infrastructure that holds up when it matters.
+      </h1>
+
+      <p class="hero-lede">
+        Software engineer and founder. Cloud architecture, Kubernetes, and
+        distributed systems. Currently heads-down on something new.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#index" class="btn">The work</a>
+        <a
+          href="https://www.linkedin.com/in/philippe-tremblay-36219485/"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-solid">Get in touch</a
+        >
       </div>
     </div>
   </section>
 
-  <!-- Divider -->
-  <hr class="divider container" />
+  <!-- ---------- Capabilities ---------- -->
+  <section id="index" class="section">
+    <div class="shell">
+      <div class="section-head">
+        <h2>What I do</h2>
+        <span class="eyebrow">01 — Practice</span>
+      </div>
 
-  <!-- Expertise Section -->
-  <section id="work" class="section">
-    <div class="container">
-      <h2 class="section-title">Expertise</h2>
-
-      <div class="expertise-list">
-        <div class="expertise-item">
-          <h3>Cloud Architecture</h3>
-          <p>Google Cloud Professional Architect and Data Engineer. Designing resilient, scalable systems that handle millions of transactions with precision.</p>
-        </div>
-
-        <div class="expertise-item">
-          <h3>Kubernetes</h3>
-          <p>Certified Kubernetes Administrator (CKA). Orchestrating containerized applications with reliability and efficiency at scale.</p>
-        </div>
-
-        <div class="expertise-item">
-          <h3>Cycling</h3>
-          <p>Competitive cyclist with <a href="https://www.instagram.com/messoremclubcycliste/" target="_blank" rel="noopener" class="link">Messorem Club Cycliste</a>. Discipline and precision on the bike translates to excellence in engineering.</p>
-        </div>
+      <div class="rows">
+        {
+          capabilities.map((item, i) => (
+            <article class="row">
+              <span class="index">{String(i + 1).padStart(2, '0')}</span>
+              <h3 class="row-title">{item.title}</h3>
+              <p class="row-body">{item.body}</p>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <!-- Divider -->
-  <hr class="divider container" />
-
-  <!-- Projects Section -->
+  <!-- ---------- Current work ---------- -->
   <section class="section">
-    <div class="container">
-      <h2 class="section-title">Current Work</h2>
+    <div class="shell">
+      <div class="section-head">
+        <h2>Current work</h2>
+        <span class="eyebrow">02 — Building</span>
+      </div>
 
-      <div class="projects-list">
-        <article class="project-item">
-          <div class="project-header">
-            <h3>Bounce</h3>
-            <span class="project-status">Active</span>
-          </div>
-          <p class="project-description">
-            Peer-to-peer payment platform designed for seamless, secure transactions. Building the core team across backend engineering, finance, and infrastructure roles.
-          </p>
-          <ul class="project-tags">
-            <li>Fintech</li>
-            <li>P2P Payments</li>
-            <li>Kubernetes</li>
-            <li>Cloud</li>
-          </ul>
-        </article>
+      <div class="rows">
+        {
+          work.map((item, i) => (
+            <article class="row work-row">
+              <span class="index">{String(i + 1).padStart(2, '0')}</span>
 
-        <article class="project-item">
-          <div class="project-header">
-            <h3>Open Source</h3>
-            <span class="project-status">Ongoing</span>
-          </div>
-          <p class="project-description">
-            Contributing to cloud-native infrastructure and developer tooling. Exploring distributed systems and automation at scale.
-          </p>
-          <ul class="project-tags">
-            <li>Cloud Native</li>
-            <li>DevOps</li>
-            <li>Infrastructure</li>
-          </ul>
-        </article>
+              <div class="work-head">
+                <h3 class="row-title">{item.title}</h3>
+                <span class={item.idle ? 'status status-idle' : 'status'}>
+                  {item.status}
+                </span>
+              </div>
+
+              <div>
+                <p class="row-body">{item.body}</p>
+                <ul class="tags work-tags">
+                  {item.tags.map((tag) => (
+                    <li>{tag}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <!-- Divider -->
-  <hr class="divider container" />
+  <!-- ---------- Off the clock ---------- -->
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <h2>Off the clock</h2>
+        <span class="eyebrow">03 — Cycling</span>
+      </div>
 
-  <!-- Contact Section -->
-  <section class="section contact-section">
-    <div class="container">
-      <div class="contact-content">
-        <h2>Let's Connect</h2>
-        <p class="contact-description">Open to discussing cloud architecture, Kubernetes, fintech, or cycling.</p>
-        <a href="https://www.linkedin.com/in/philippe-tremblay-36219485/" target="_blank" rel="noopener" class="btn btn-primary">Get in Touch</a>
+      <p class="prose off-clock">
+        Racing with
+        <a
+          href="https://www.instagram.com/messoremclubcycliste/"
+          target="_blank"
+          rel="noopener"
+          class="link">Messorem Club Cycliste</a
+        >. Long intervals, bad weather, and a training log that does not care how
+        the week went. The habits transfer.
+      </p>
+    </div>
+  </section>
+
+  <!-- ---------- Contact ---------- -->
+  <section class="section contact">
+    <div class="shell">
+      <hr class="rule" />
+      <div class="contact-inner">
+        <h2 class="contact-title">Let's talk.</h2>
+        <p class="contact-body">
+          Open to conversations about infrastructure, platform engineering, and
+          early-stage building.
+        </p>
+        <a
+          href="https://www.linkedin.com/in/philippe-tremblay-36219485/"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-solid">LinkedIn</a
+        >
       </div>
     </div>
   </section>
 </BaseLayout>
 
 <style>
-  /* Hero Section - Compact, minimal */
   .hero {
-    padding: var(--space-20) 0 var(--space-16) 0;
+    padding: var(--s-8) 0 var(--s-7);
+    border-bottom: 1px solid var(--rule);
   }
 
   @media (min-width: 768px) {
     .hero {
-      padding: var(--space-24) 0 var(--space-20) 0;
+      padding: var(--s-9) 0 var(--s-8);
     }
   }
 
-  .hero-content {
-    max-width: 800px;
-  }
-
-  .hero-label {
-    font-size: 0.8125rem;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-light);
-    margin-bottom: var(--space-4);
-    font-weight: 500;
+  .hero-eyebrow {
+    margin-bottom: var(--s-5);
   }
 
   .hero-title {
-    margin-bottom: var(--space-5);
-    max-width: 18ch;
-    font-size: clamp(2rem, 7vw, 4rem);
+    max-width: 19ch;
+    margin-bottom: var(--s-5);
   }
 
-  .hero-description {
-    font-size: 1.0625rem;
-    color: var(--text-medium);
-    max-width: 600px;
-    margin-bottom: var(--space-8);
-    line-height: 1.65;
+  .hero-lede {
+    font-size: var(--step-1);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 46ch;
+    margin-bottom: var(--s-6);
   }
 
   .hero-actions {
     display: flex;
-    gap: var(--space-3);
     flex-wrap: wrap;
+    gap: var(--s-3);
   }
 
-  /* Divider */
-  .divider {
-    max-width: var(--container-xl);
-  }
-
-  /* Section */
-  .section-title {
-    margin-bottom: var(--space-10);
-    font-size: clamp(1.75rem, 5vw, 2.5rem);
-  }
-
-  /* Expertise List - Compact grid */
-  .expertise-list {
-    display: grid;
-    gap: var(--space-10);
-  }
-
-  @media (min-width: 768px) {
-    .expertise-list {
-      grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-8);
-    }
-  }
-
-  .expertise-item h3 {
-    font-size: 1.125rem;
-    margin-bottom: var(--space-3);
-    font-weight: 600;
-  }
-
-  .expertise-item p {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    margin: 0;
-  }
-
-  /* Projects List - Compact */
-  .projects-list {
-    display: grid;
-    gap: var(--space-8);
-  }
-
-  @media (min-width: 768px) {
-    .projects-list {
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-10);
-    }
-  }
-
-  .project-item {
-    padding: var(--space-6);
-    background: var(--bg-subtle);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    transition: border-color var(--transition);
-  }
-
-  .project-item:hover {
-    border-color: var(--text-light);
-  }
-
-  .project-header {
+  /* Work rows carry a status marker beside the title */
+  .work-head {
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin-bottom: var(--space-3);
-    gap: var(--space-4);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--s-2);
   }
 
-  .project-header h3 {
-    font-size: 1.25rem;
-    margin: 0;
+  .work-tags {
+    margin-top: var(--s-4);
   }
 
-  .project-status {
-    font-size: 0.6875rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--accent);
-    font-weight: 500;
-    white-space: nowrap;
-  }
-
-  .project-description {
-    font-size: 0.9375rem;
+  .off-clock {
+    font-size: var(--step-1);
     line-height: 1.6;
-    margin-bottom: var(--space-5);
-    color: var(--text-medium);
+    color: var(--ink-soft);
   }
 
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-2);
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  .contact-inner {
+    padding-top: var(--s-7);
   }
 
-  .project-tags li {
-    font-size: 0.75rem;
-    color: var(--text-light);
-    padding: var(--space-1) var(--space-3);
-    background: var(--bg);
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--border-subtle);
+  .contact-title {
+    margin-bottom: var(--s-3);
   }
 
-  /* Contact Section - Compact */
-  .contact-section {
-    text-align: center;
+  .contact-body {
+    max-width: 42ch;
+    margin-bottom: var(--s-5);
   }
 
-  .contact-content {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .contact-content h2 {
-    margin-bottom: var(--space-4);
-    font-size: clamp(1.75rem, 5vw, 2.5rem);
-  }
-
-  .contact-description {
-    font-size: 1.0625rem;
-    margin: 0 auto var(--space-6);
-    color: var(--text-medium);
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .hero {
-      padding: var(--space-16) 0 var(--space-12) 0;
-    }
-
-    .hero-actions {
-      flex-direction: column;
-    }
-
+  @media (max-width: 640px) {
     .hero-actions .btn {
-      width: 100%;
+      flex: 1 1 100%;
       justify-content: center;
-    }
-
-    .expertise-list {
-      gap: var(--space-8);
-    }
-
-    .project-item {
-      padding: var(--space-5);
-    }
-
-    .project-header {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--space-2);
     }
   }
 </style>

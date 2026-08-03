@@ -1,4 +1,10 @@
-/* Modern CSS Reset */
+/* ============================================================
+   Danish minimalist design system
+   Warm paper, ink, hairline rules, one muted accent.
+   Structure borrows from hermes-agent.nousresearch.com:
+   mono eyebrows, rule-separated blocks, grain over flat colour.
+   ============================================================ */
+
 *,
 *::before,
 *::after {
@@ -8,320 +14,421 @@
 }
 
 :root {
-  /* Messorem Purple - Single accent color */
-  --purple: #8159b8;
-  --purple-dark: #6b449e;
-  --purple-light: #9b75c9;
-  --purple-pale: #f5f2f8;
+  /* --- Paper & ink -------------------------------------------------
+     Never pure white, never pure black. Uncoated-stock warmth. */
+  --paper: #f2efe9;
+  --paper-raised: #f8f6f1;
+  --paper-sunk: #e9e5dc;
 
-  /* Scandinavian Neutral Palette - Warm, inviting, minimal */
-  --warm-white: #fafaf8;
-  --cream: #f8f8f6;
-  --white: #ffffff;
-  --gray-50: #f5f5f3;
-  --gray-100: #ececea;
-  --gray-200: #e0e0de;
-  --gray-300: #d4d4d2;
-  --gray-400: #b8b8b6;
-  --gray-500: #9a9a98;
-  --gray-600: #6e6e6c;
-  --gray-700: #565654;
-  --gray-800: #3a3a38;
-  --gray-900: #1f1f1d;
-  --black: #000000;
+  --ink: #1c1a16;
+  --ink-soft: #4a463e;
+  --ink-muted: #7d776c;
+  --ink-faint: #a8a294;
 
-  /* Semantic colors */
-  --bg: var(--warm-white);
-  --bg-subtle: var(--cream);
-  --bg-muted: var(--gray-100);
-  --text: var(--gray-900);
-  --text-medium: var(--gray-700);
-  --text-light: var(--gray-600);
-  --text-subtle: var(--gray-500);
-  --border: var(--gray-200);
-  --border-subtle: var(--gray-100);
-  --accent: var(--purple);
+  /* Hairlines. The whole layout is built from these. */
+  --rule: #d8d2c6;
+  --rule-soft: #e4dfd5;
+  --rule-strong: #bdb5a5;
 
-  /* Typography - Clean sans-serif for Scandinavian feel */
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Helvetica Neue', system-ui, sans-serif;
+  /* --- Accent ------------------------------------------------------
+     Exactly one. Muted clay — warm, earthy, Nordic. Used for state
+     and emphasis only, never for decoration. */
+  --clay: #9d4b33;
+  --clay-deep: #7f3b27;
+  --clay-wash: #ede2dc;
 
-  /* Compact spacing scale - Reduced for minimal scrolling */
-  --space-1: 0.25rem;   /* 4px */
-  --space-2: 0.5rem;    /* 8px */
-  --space-3: 0.75rem;   /* 12px */
-  --space-4: 1rem;      /* 16px */
-  --space-5: 1.25rem;   /* 20px */
-  --space-6: 1.5rem;    /* 24px */
-  --space-8: 2rem;      /* 32px */
-  --space-10: 2.5rem;   /* 40px */
-  --space-12: 3rem;     /* 48px */
-  --space-16: 4rem;     /* 64px */
-  --space-20: 5rem;     /* 80px */
-  --space-24: 6rem;     /* 96px */
+  /* --- Type --------------------------------------------------------
+     Three faces, three jobs, zero webfont requests.
+     Serif = display. Grotesque = body/UI. Mono = labels & data. */
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua',
+    Georgia, 'Times New Roman', serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Text',
+    'Helvetica Neue', Helvetica, system-ui, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas,
+    'Liberation Mono', monospace;
 
-  /* Container widths */
-  --container-sm: 640px;
-  --container-md: 768px;
-  --container-lg: 1024px;
-  --container-xl: 1248px;
+  /* --- Scale -------------------------------------------------------
+     Compact by intent: dense enough to keep pages short. */
+  --step--1: 0.8125rem;
+  --step-0: 0.9375rem;
+  --step-1: 1.0625rem;
+  --step-2: clamp(1.25rem, 1.6vw, 1.5rem);
+  --step-3: clamp(1.625rem, 2.6vw, 2.125rem);
+  --step-4: clamp(2.25rem, 5.2vw, 3.75rem);
 
-  /* Border radius - Subtle, Scandinavian */
-  --radius-sm: 0.25rem;
-  --radius: 0.375rem;
-  --radius-lg: 0.5rem;
+  --eyebrow: 0.6875rem;
 
-  /* Transitions */
-  --transition: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  /* --- Space -------------------------------------------------------- */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 2.75rem;
+  --s-8: 3.5rem;
+  --s-9: 5rem;
+  --s-10: 7rem;
+
+  --measure: 62ch;
+  --shell: 1180px;
+  --gutter: 1.5rem;
+
+  /* Squared. Danish minimalism does not round things. */
+  --radius: 0px;
+
+  --ease: 160ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Paper grain, tiled. The one texture in the system. */
+  --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --grain-opacity: 0.028;
+
+  color-scheme: light;
 }
 
 [data-theme='dark'] {
-  --bg: var(--gray-900);
-  --bg-subtle: var(--gray-800);
-  --bg-muted: var(--gray-700);
-  --text: var(--gray-50);
-  --text-medium: var(--gray-300);
-  --text-light: var(--gray-400);
-  --text-subtle: var(--gray-500);
-  --border: var(--gray-700);
-  --border-subtle: var(--gray-800);
-  --accent: var(--purple-light);
+  /* Warm near-black. Cold blue-black would break the paper metaphor. */
+  --paper: #17150f;
+  --paper-raised: #1f1c15;
+  --paper-sunk: #100e09;
+
+  --ink: #ece7dc;
+  --ink-soft: #c3bdaf;
+  --ink-muted: #8d8578;
+  --ink-faint: #635d52;
+
+  --rule: #332f25;
+  --rule-soft: #26231b;
+  --rule-strong: #4b463a;
+
+  --clay: #c9704f;
+  --clay-deep: #dd8a68;
+  --clay-wash: #2b201a;
+
+  --grain-opacity: 0.045;
+
+  color-scheme: dark;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 2.5rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --gutter: 3.5rem;
+  }
 }
 
 html {
-  scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
   font-family: var(--font-sans);
-  background: var(--bg);
-  color: var(--text);
+  font-size: var(--step-0);
   line-height: 1.6;
-  font-size: 16px;
+  background: var(--paper);
+  color: var(--ink);
   font-weight: 400;
+  min-height: 100dvh;
 }
 
-/* Typography - Clean, functional, Scandinavian */
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.025em;
-  color: var(--text);
+/* Grain sits above the background, below everything else. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: var(--grain);
+  background-size: 190px 190px;
+  opacity: var(--grain-opacity);
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---------- Type ---------- */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.012em;
+  color: var(--ink);
+  text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 8vw, 5rem);
-  font-weight: 600;
-  letter-spacing: -0.035em;
-  line-height: 1.1;
+  font-size: var(--step-4);
+  line-height: 1.04;
+  letter-spacing: -0.022em;
 }
 
 h2 {
-  font-size: clamp(2rem, 6vw, 3.5rem);
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  line-height: 1.15;
+  font-size: var(--step-3);
 }
 
 h3 {
-  font-size: clamp(1.5rem, 4vw, 2.25rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-size: var(--step-2);
 }
 
 h4 {
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
-  font-weight: 600;
+  font-size: var(--step-1);
 }
 
 p {
-  color: var(--text-medium);
-  margin-bottom: var(--space-6);
-  max-width: 65ch;
-  line-height: 1.7;
+  color: var(--ink-soft);
+  max-width: var(--measure);
+  text-wrap: pretty;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: color var(--transition);
+  transition: color var(--ease);
 }
 
-/* Container - 12-column grid inspired */
-.container {
+::selection {
+  background: var(--clay);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
+}
+
+/* ---------- Eyebrow: the signature label ----------
+   Small, mono, uppercase, wide-tracked. Marks every section. */
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--ink-muted);
+  font-weight: 400;
+}
+
+/* Mono index numerals — 01, 02, 03 */
+.index {
+  font-family: var(--font-mono);
+  font-size: var(--eyebrow);
+  color: var(--ink-faint);
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- Shell ---------- */
+
+.shell {
   width: 100%;
-  max-width: var(--container-xl);
+  max-width: var(--shell);
   margin: 0 auto;
-  padding: 0 var(--space-6);
+  padding: 0 var(--gutter);
+}
+
+/* Rule that spans the shell's inner width */
+.rule {
+  height: 1px;
+  border: 0;
+  background: var(--rule);
+}
+
+/* ---------- Section ---------- */
+
+.section {
+  padding: var(--s-7) 0;
 }
 
 @media (min-width: 768px) {
-  .container {
-    padding: 0 var(--space-12);
+  .section {
+    padding: var(--s-8) 0;
   }
 }
 
-@media (min-width: 1280px) {
-  .container {
-    padding: 0 var(--space-16);
+/* Section header: eyebrow over a hairline, editorial masthead style.
+   Its rule doubles as the top edge of the list beneath it — hence no
+   margin here and no border-top on .rows. */
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s-4);
+  padding-bottom: var(--s-3);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 0;
+}
+
+/* Standalone prose after a head still needs air. */
+.section-head + :not(.rows) {
+  margin-top: var(--s-6);
+}
+
+/* ---------- Rule-separated rows ----------
+   Replaces cards. Every list is a stack of hairline-divided rows. */
+
+.rows {
+  border-top: 1px solid var(--rule);
+}
+
+/* When a list follows a section head, that head's rule is the top edge. */
+.section-head + .rows {
+  border-top: 0;
+}
+
+.row {
+  display: grid;
+  gap: var(--s-2);
+  padding: var(--s-5) 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+@media (min-width: 768px) {
+  .row {
+    grid-template-columns: 3.5rem minmax(0, 15rem) minmax(0, 1fr);
+    gap: var(--s-5);
+    align-items: start;
+    padding: var(--s-5) 0;
   }
 }
 
-/* Buttons - Minimal, functional */
+.row-title {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.row-body {
+  color: var(--ink-soft);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  margin: 0;
+  max-width: 54ch;
+}
+
+/* ---------- Controls ---------- */
+
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-2);
-  padding: var(--space-3) var(--space-6);
-  font-weight: 500;
-  font-size: 0.9375rem;
+  gap: var(--s-2);
+  font-family: var(--font-mono);
+  font-size: var(--eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 0.8rem 1.4rem;
+  border: 1px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
   border-radius: var(--radius);
   cursor: pointer;
-  border: 1px solid transparent;
-  transition: all var(--transition);
-  text-decoration: none;
-  letter-spacing: -0.01em;
   white-space: nowrap;
+  transition: background var(--ease), color var(--ease), border-color var(--ease);
 }
 
-.btn-primary {
-  background: var(--accent);
-  color: var(--white);
-  border-color: var(--accent);
+.btn:hover {
+  background: var(--ink);
+  color: var(--paper);
 }
 
-.btn-primary:hover {
-  background: var(--purple-dark);
-  border-color: var(--purple-dark);
-  color: var(--white);
+.btn-solid {
+  background: var(--ink);
+  color: var(--paper);
 }
 
-.btn-secondary {
-  background: transparent;
-  color: var(--text);
-  border-color: var(--border);
+.btn-solid:hover {
+  background: var(--clay);
+  border-color: var(--clay);
+  color: var(--paper);
 }
 
-.btn-secondary:hover {
-  border-color: var(--text);
-  background: var(--bg-subtle);
-}
-
-.btn-lg {
-  padding: var(--space-4) var(--space-8);
-  font-size: 1rem;
-}
-
-/* Link with underline - Scandinavian simple */
+/* Inline link: hairline underline that thickens to clay on hover.
+   inline-block keeps the underline on the text, not the whole grid cell. */
 .link {
-  position: relative;
-  color: var(--text);
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 1px;
-  transition: border-color var(--transition);
+  display: inline-block;
+  color: var(--ink);
+  box-shadow: inset 0 -1px 0 0 var(--rule-strong);
+  transition: box-shadow var(--ease), color var(--ease);
 }
 
 .link:hover {
-  border-color: var(--accent);
-  color: var(--text);
+  color: var(--clay);
+  box-shadow: inset 0 -1px 0 0 var(--clay);
 }
 
-/* Sections - Compact, minimal scrolling */
-.section {
-  padding: var(--space-16) 0;
+/* Tag list — mono, hairline-boxed, no fill */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+  list-style: none;
 }
 
-@media (min-width: 768px) {
-  .section {
-    padding: var(--space-20) 0;
-  }
-}
-
-@media (min-width: 1024px) {
-  .section {
-    padding: var(--space-24) 0;
-  }
-}
-
-/* Grid system - Clean, functional */
-.grid {
-  display: grid;
-  gap: var(--space-12);
-}
-
-.grid-2 {
-  grid-template-columns: 1fr;
-}
-
-.grid-3 {
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 768px) {
-  .grid-2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .grid-3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Divider - Simple horizontal line */
-.divider {
-  height: 1px;
-  background: var(--border);
-  border: none;
-  margin: var(--space-8) 0;
-}
-
-/* Card - Minimal, clean */
-.card {
-  padding: var(--space-8);
-  background: var(--bg-subtle);
+.tags li {
+  font-family: var(--font-mono);
+  font-size: var(--eyebrow);
+  letter-spacing: 0.06em;
+  color: var(--ink-muted);
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--rule);
   border-radius: var(--radius);
-  border: 1px solid var(--border-subtle);
 }
 
-/* Utilities */
-.text-center {
-  text-align: center;
+/* Status marker — the one place clay appears as a dot */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: var(--eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-muted);
+  white-space: nowrap;
 }
 
-.text-accent {
-  color: var(--accent);
+.status::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--clay);
 }
 
-.bg-subtle {
-  background: var(--bg-subtle);
+.status-idle::before {
+  background: var(--ink-faint);
 }
 
-.bg-muted {
-  background: var(--bg-muted);
-}
+/* ---------- Utilities ---------- */
 
-/* Max width prose container */
 .prose {
-  max-width: 65ch;
+  max-width: var(--measure);
 }
 
-.prose-lg {
-  max-width: 75ch;
-}
-
-/* Animations - Subtle */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.fade-in {
-  animation: fadeIn 0.4s ease-out;
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
