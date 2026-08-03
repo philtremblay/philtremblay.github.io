@@ -3,7 +3,8 @@ node_modules/
 
 # Deno
 .deno/
-deno.lock
+# deno.lock is committed on purpose: it pins the dependency graph so CI builds
+# are reproducible and the workflow's cache key is meaningful.
 
 # build output
 dist/

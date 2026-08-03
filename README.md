@@ -36,14 +36,15 @@ A modern, minimal portfolio website built with Astro.js featuring a beautiful pu
 │       ├── blog/
 │       └── projects/
 ├── astro.config.mjs     # Astro configuration
-└── deno.json            # Deno configuration and tasks
+├── deno.json            # Deno configuration and tasks
+└── deno.lock            # Dependency lockfile (committed)
 ```
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Deno 2.x or higher
+- Deno 2.9.4 or higher (CI pins 2.9.4)
 
 ### Installation
 
@@ -144,15 +145,15 @@ This site is configured for GitHub Pages deployment with Deno:
 
 3. **For GitHub Pages**:
    - Push your code to GitHub
-   - Enable GitHub Pages in repository settings
-   - Set source to the branch containing your built site
+   - In repository settings → Pages, set **Source** to **GitHub Actions**
+     (not "Deploy from a branch" — the workflow publishes the built artifact)
    - Your site will be live at `https://philtremblay.github.io`
 
 ### GitHub Actions (Automated)
 
-The repository includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that automatically builds and deploys on push to `main`:
+The repository includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that automatically builds and deploys on push to `master`:
 
-- Uses Deno 2.x runtime
+- Uses Deno 2.9.4 (pinned in the workflow)
 - Automatic dependency caching for faster builds
 - Deploys to GitHub Pages automatically
 - No manual dependency installation needed

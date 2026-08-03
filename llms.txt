@@ -9,8 +9,7 @@ A personal portfolio for Philippe Tremblay, Founder of Bounce P2P Payment App an
 
 Live site: https://philtremblay.github.io
 Framework: Astro 5.15.8
-Package Manager: pnpm 10.22.0
-Node Version: 24.11.1
+Runtime: Deno 2.9.4 (also manages npm dependencies — no separate package manager)
 
 ## Architecture
 
@@ -33,11 +32,10 @@ This is an Astro.js static site using:
 ## Key Files
 
 ### Configuration
-- /package.json - Dependencies and build scripts (Astro 5.15.8 only)
+- /deno.json - Deno tasks, npm import map (Astro 5.15.8), nodeModulesDir: auto
+- /deno.lock - Committed lockfile pinning the full dependency graph
 - /astro.config.mjs - Astro config for GitHub Pages (site, base path)
 - /tsconfig.json - TypeScript strict mode configuration
-- /.nvmrc - Node version specification (24.11.1)
-- /.pnpmrc - pnpm configuration
 
 ### Layouts & Components
 - /src/layouts/BaseLayout.astro - Main layout with SEO, meta tags, Header, Footer
@@ -76,8 +74,8 @@ This is an Astro.js static site using:
 
 ### CI/CD
 - /.github/workflows/deploy.yml - GitHub Actions workflow for automated deployment
-  * Triggers on push to main branch
-  * Uses Node 20, pnpm 9 with caching
+  * Triggers on push to master branch (master is the default branch)
+  * Uses Deno 2.9.4 (pinned) via denoland/setup-deno@v2, with dependency caching
   * Builds to /dist/ and deploys to GitHub Pages
 
 ## Color Palette (Messorem Purple Theme)
@@ -94,16 +92,16 @@ All colors defined as CSS variables in /src/styles/global.css for easy customiza
 
 ### Setup
 ```bash
-# Requires Node.js 24.11.1 (specified in .nvmrc)
-# Requires pnpm 10.22.0 (specified in package.json packageManager field)
-pnpm install
+# Requires Deno 2.9.4+ (https://deno.com/)
+# No install step — Deno resolves and caches npm dependencies on first task run
 ```
 
 ### Commands
 ```bash
-pnpm run dev      # Start dev server at http://localhost:4321
-pnpm run build    # Build static site to /dist/
-pnpm run preview  # Preview production build locally
+deno task dev      # Start dev server at http://localhost:4321
+deno task build    # Build static site to /dist/
+deno task preview  # Preview production build locally
+deno task check    # Type-check the Astro project
 ```
 
 ### Project Structure
@@ -118,8 +116,8 @@ pnpm run preview  # Preview production build locally
 │   ├── styles/          # Global CSS with theme variables
 │   └── env.d.ts        # TypeScript environment definitions
 ├── astro.config.mjs    # Astro configuration
-├── package.json        # Dependencies and scripts
-├── pnpm-lock.yaml      # Lockfile for pnpm
+├── deno.json           # Deno tasks and npm import map
+├── deno.lock           # Committed dependency lockfile
 └── tsconfig.json       # TypeScript configuration
 ```
 
@@ -148,17 +146,19 @@ pnpm run preview  # Preview production build locally
 
 ## Deployment
 
-Automated via GitHub Actions on push to main branch:
-1. Workflow builds site with pnpm build
+Automated via GitHub Actions on push to master branch:
+1. Workflow builds site with `deno task build`
 2. Uploads /dist/ folder as GitHub Pages artifact
 3. Deploys to https://philtremblay.github.io
 
-Manual deployment: Build with `pnpm run build` and deploy /dist/ folder to any static host (Vercel, Netlify, Cloudflare Pages, etc.)
+Note: GitHub Pages must be set to "GitHub Actions" as the build source (not "Deploy from a branch") for this workflow to publish.
+
+Manual deployment: Build with `deno task build` and deploy /dist/ folder to any static host (Vercel, Netlify, Cloudflare Pages, etc.)
 
 ## Recent Changes
 
-- 2025-11-15: Updated to Node.js 24.11.1 and pnpm 10.22.0 (latest versions)
-- 2025-11-15: Switched from npm to pnpm for faster installs
+- 2026-08-03: Upgraded to Deno 2.9.4 and pinned the version in CI; committed deno.lock
+- 2025-11-16: Switched from Node.js/pnpm to the Deno runtime (deno.json replaces package.json)
 - Complete redesign from vanilla HTML/CSS/JS to Astro.js framework
 - Implemented Messorem purple theme with dark/light mode
 - Added automated GitHub Pages deployment via GitHub Actions
@@ -169,7 +169,7 @@ Manual deployment: Build with `pnpm run build` and deploy /dist/ folder to any s
 - All content is hardcoded in .astro files (not using CMS or content collections yet)
 - Theme toggle uses client-side JavaScript in Header.astro (lines 196-220)
 - CSS is scoped by component except for global.css
-- Build output is excluded from git (see .gitignore for dist/, node_modules/)
+- Build output is excluded from git (see .gitignore for dist/, node_modules/); deno.lock IS committed
 - Site is optimized for perfect Lighthouse scores (minimal CSS, zero JS overhead)
 - Personal information (name, LinkedIn, GitHub) is scattered across multiple files
 - Blog structure exists but is not populated with actual posts yet
