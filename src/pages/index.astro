@@ -1,35 +1,37 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-const capabilities = [
+// Deliberately credential-neutral: what is proven, nothing about what is
+// currently being built. Keep it that way.
+const practice = [
+  {
+    title: 'Distributed Systems',
+    body: 'Event-driven services, data pipelines, and the failure modes that only surface at scale.',
+  },
   {
     title: 'Cloud Architecture',
-    body: 'Google Cloud Professional Architect and Professional Data Engineer. Designing systems that stay predictable as they grow — and stay legible to the people who have to run them.',
+    body: 'Designing systems that stay predictable as they grow, and legible to the people who run them.',
   },
   {
     title: 'Kubernetes',
-    body: 'Certified Kubernetes Administrator. Orchestration, scheduling, and the unglamorous operational work that decides whether a platform holds up in production.',
+    body: 'Orchestration and the operational work that decides whether a platform holds up in production.',
   },
   {
-    title: 'Distributed Systems',
-    body: 'Data pipelines, event-driven services, and the failure modes that only surface at scale. Built on a McGill software engineering foundation.',
+    title: 'Machine Learning',
+    body: 'Applied ML in production systems — the engineering around the model, more than the model.',
   },
 ];
 
-const work = [
-  {
-    title: 'New venture',
-    status: 'In progress',
-    body: 'Heads-down on something new. More when there is something worth showing.',
-    tags: ['Stealth'],
-  },
-  {
-    title: 'Open source',
-    status: 'Ongoing',
-    body: 'Contributions to cloud-native infrastructure and developer tooling — mostly the parts that make operating distributed systems less painful.',
-    tags: ['Cloud Native', 'Tooling', 'Infrastructure'],
-    idle: true,
-  },
+const credentials = [
+  { title: 'Certified Kubernetes Administrator', note: 'CKA' },
+  { title: 'Google Cloud — Professional Cloud Architect', note: 'GCP' },
+  { title: 'Google Cloud — Professional Data Engineer', note: 'GCP' },
+  { title: 'McGill University — Software Engineering', note: 'B.Eng.' },
+];
+
+const elsewhere = [
+  { name: 'LinkedIn', href: 'https://www.linkedin.com/in/philippe-tremblay-36219485/' },
+  { name: 'GitHub', href: 'https://github.com/philtremblay' },
 ];
 ---
 
@@ -37,40 +39,38 @@ const work = [
   <!-- ---------- Hero ---------- -->
   <section class="hero">
     <div class="shell">
-      <p class="eyebrow hero-eyebrow">Montréal, Québec — Engineer &amp; Founder</p>
+      <p class="eyebrow hero-eyebrow">Montréal, Québec</p>
 
-      <h1 class="hero-title">
-        Building infrastructure that holds up when it matters.
-      </h1>
+      <h1 class="hero-title">Philippe Tremblay</h1>
 
       <p class="hero-lede">
-        Software engineer and founder. Cloud architecture, Kubernetes, and
-        distributed systems. Currently heads-down on something new.
+        Software engineer. Distributed systems, cloud infrastructure, and
+        machine learning. Currently building something new.
       </p>
 
-      <div class="hero-actions">
-        <a href="#index" class="btn">The work</a>
-        <a
-          href="https://www.linkedin.com/in/philippe-tremblay-36219485/"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-solid">Get in touch</a
-        >
-      </div>
+      <nav class="hero-links" aria-label="Elsewhere">
+        {
+          elsewhere.map((link) => (
+            <a href={link.href} target="_blank" rel="noopener" class="btn">
+              {link.name}
+            </a>
+          ))
+        }
+      </nav>
     </div>
   </section>
 
-  <!-- ---------- Capabilities ---------- -->
-  <section id="index" class="section">
+  <!-- ---------- Practice ---------- -->
+  <section class="section">
     <div class="shell">
       <div class="section-head">
-        <h2>What I do</h2>
-        <span class="eyebrow">01 — Practice</span>
+        <h2>Practice</h2>
+        <span class="eyebrow">01</span>
       </div>
 
       <div class="rows">
         {
-          capabilities.map((item, i) => (
+          practice.map((item, i) => (
             <article class="row">
               <span class="index">{String(i + 1).padStart(2, '0')}</span>
               <h3 class="row-title">{item.title}</h3>
@@ -82,36 +82,22 @@ const work = [
     </div>
   </section>
 
-  <!-- ---------- Current work ---------- -->
+  <!-- ---------- Credentials ---------- -->
   <section class="section">
     <div class="shell">
       <div class="section-head">
-        <h2>Current work</h2>
-        <span class="eyebrow">02 — Building</span>
+        <h2>Credentials</h2>
+        <span class="eyebrow">02</span>
       </div>
 
       <div class="rows">
         {
-          work.map((item, i) => (
-            <article class="row work-row">
+          credentials.map((item, i) => (
+            <div class="row credential">
               <span class="index">{String(i + 1).padStart(2, '0')}</span>
-
-              <div class="work-head">
-                <h3 class="row-title">{item.title}</h3>
-                <span class={item.idle ? 'status status-idle' : 'status'}>
-                  {item.status}
-                </span>
-              </div>
-
-              <div>
-                <p class="row-body">{item.body}</p>
-                <ul class="tags work-tags">
-                  {item.tags.map((tag) => (
-                    <li>{tag}</li>
-                  ))}
-                </ul>
-              </div>
-            </article>
+              <h3 class="row-title credential-title">{item.title}</h3>
+              <span class="eyebrow credential-note">{item.note}</span>
+            </div>
           ))
         }
       </div>
@@ -123,39 +109,18 @@ const work = [
     <div class="shell">
       <div class="section-head">
         <h2>Off the clock</h2>
-        <span class="eyebrow">03 — Cycling</span>
+        <span class="eyebrow">03</span>
       </div>
 
-      <p class="prose off-clock">
+      <p class="off-clock">
         Racing with
         <a
           href="https://www.instagram.com/messoremclubcycliste/"
           target="_blank"
           rel="noopener"
           class="link">Messorem Club Cycliste</a
-        >. Long intervals, bad weather, and a training log that does not care how
-        the week went. The habits transfer.
+        >.
       </p>
-    </div>
-  </section>
-
-  <!-- ---------- Contact ---------- -->
-  <section class="section contact">
-    <div class="shell">
-      <hr class="rule" />
-      <div class="contact-inner">
-        <h2 class="contact-title">Let's talk.</h2>
-        <p class="contact-body">
-          Open to conversations about infrastructure, platform engineering, and
-          early-stage building.
-        </p>
-        <a
-          href="https://www.linkedin.com/in/philippe-tremblay-36219485/"
-          target="_blank"
-          rel="noopener"
-          class="btn btn-solid">LinkedIn</a
-        >
-      </div>
     </div>
   </section>
 </BaseLayout>
@@ -173,11 +138,10 @@ const work = [
   }
 
   .hero-eyebrow {
-    margin-bottom: var(--s-5);
+    margin-bottom: var(--s-4);
   }
 
   .hero-title {
-    max-width: 19ch;
     margin-bottom: var(--s-5);
   }
 
@@ -185,26 +149,34 @@ const work = [
     font-size: var(--step-1);
     line-height: 1.55;
     color: var(--ink-soft);
-    max-width: 46ch;
+    max-width: 42ch;
     margin-bottom: var(--s-6);
   }
 
-  .hero-actions {
+  .hero-links {
     display: flex;
     flex-wrap: wrap;
     gap: var(--s-3);
   }
 
-  /* Work rows carry a status marker beside the title */
-  .work-head {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--s-2);
+  .credential {
+    align-items: baseline;
   }
 
-  .work-tags {
-    margin-top: var(--s-4);
+  .credential-title {
+    font-size: var(--step-0);
+    font-family: var(--font-sans);
+    color: var(--ink);
+  }
+
+  @media (min-width: 768px) {
+    .credential {
+      grid-template-columns: 3.5rem minmax(0, 1fr) auto;
+    }
+
+    .credential-note {
+      text-align: right;
+    }
   }
 
   .off-clock {
@@ -213,21 +185,8 @@ const work = [
     color: var(--ink-soft);
   }
 
-  .contact-inner {
-    padding-top: var(--s-7);
-  }
-
-  .contact-title {
-    margin-bottom: var(--s-3);
-  }
-
-  .contact-body {
-    max-width: 42ch;
-    margin-bottom: var(--s-5);
-  }
-
   @media (max-width: 640px) {
-    .hero-actions .btn {
+    .hero-links .btn {
       flex: 1 1 100%;
       justify-content: center;
     }

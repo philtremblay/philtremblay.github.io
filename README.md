@@ -1,227 +1,110 @@
-# Philippe Tremblay - Portfolio
+# philtremblay.github.io
 
-A modern, minimal portfolio website built with Astro.js featuring a beautiful purple theme inspired by Messo Rem Club Cycliste.
+Personal site for Philippe Tremblay — a single page, built with Astro and served
+from GitHub Pages.
 
-## ✨ Features
+The design is Danish minimalist: warm paper, ink, hairline rules, mono labels, and
+exactly one muted accent. Structural cues (mono eyebrows, rule-separated rows, grain
+over flat colour, a strict token system) are adapted from
+[hermes-agent.nousresearch.com](https://hermes-agent.nousresearch.com/); the palette
+and typography are Danish rather than Hermes's electric blue.
 
-- **🚀 Blazing Fast**: Built with Astro for optimal performance
-- **🎨 Modern Design**: Clean, professional aesthetic with Messorem purple theme
-- **🌓 Dark/Light Mode**: Automatic theme switching with localStorage persistence
-- **📱 Fully Responsive**: Mobile-first design that works beautifully on all devices
-- **♿ Accessible**: Built with accessibility best practices
-- **🔍 SEO Optimized**: Meta tags, Open Graph, and semantic HTML
-- **📝 Blog Ready**: Prepared structure for future blog posts
-- **⚡ Zero JavaScript Overhead**: Astro ships zero JS by default, only adding it where needed
+## Scope
 
-## 🏗️ Project Structure
+The site is a name anchor, not a portfolio. It states proven capability and nothing
+about current work. That is deliberate — see the constraints in [`llms.txt`](llms.txt)
+before changing copy.
+
+## Structure
 
 ```
-├── public/              # Static assets
-│   └── images/
+/
+├── .github/workflows/       # GitHub Actions deploy
+├── public/                  # robots.txt
 ├── src/
-│   ├── components/      # Reusable Astro components
-│   │   ├── Header.astro
-│   │   └── Footer.astro
-│   ├── layouts/         # Page layouts
-│   │   └── BaseLayout.astro
-│   ├── pages/           # File-based routing
-│   │   ├── index.astro
-│   │   ├── projects/
-│   │   │   └── index.astro
-│   │   └── blog/
-│   │       └── index.astro
-│   ├── styles/          # Global styles
-│   │   └── global.css
-│   └── content/         # Content collections (for blog)
-│       ├── blog/
-│       └── projects/
-├── astro.config.mjs     # Astro configuration
-├── deno.json            # Deno configuration and tasks
-└── deno.lock            # Dependency lockfile (committed)
+│   ├── components/
+│   │   ├── Header.astro     # Sticky masthead: wordmark + theme toggle
+│   │   └── Footer.astro     # Colophon
+│   ├── layouts/
+│   │   └── BaseLayout.astro # SEO, favicon, pre-paint theme script
+│   ├── pages/
+│   │   └── index.astro      # The only page
+│   └── styles/
+│       └── global.css       # Design system: tokens and primitives
+├── astro.config.mjs
+├── deno.json                # Tasks and npm import map
+└── deno.lock                # Committed lockfile
 ```
 
-## 🚀 Getting Started
+## Getting started
 
-### Prerequisites
-
-- Deno 2.9.4 or higher (CI pins 2.9.4)
-
-### Installation
+Requires [Deno](https://deno.com/) 2.9.4 or higher. There is no install step — Deno
+resolves and caches npm dependencies on the first task run.
 
 ```bash
-# Clone the repository
 git clone https://github.com/philtremblay/philtremblay.github.io.git
 cd philtremblay.github.io
-
-# Install Deno if you don't have it
-# macOS/Linux:
-curl -fsSL https://deno.land/install.sh | sh
-# Windows:
-# irm https://deno.land/install.ps1 | iex
-
-# Start development server (dependencies install automatically)
 deno task dev
 ```
 
-The site will be available at `http://localhost:4321`
-
-### Available Scripts
+Serves at `http://localhost:4321`.
 
 ```bash
-deno task dev       # Start development server
-deno task build     # Build for production
-deno task preview   # Preview production build locally
-deno task check     # Check Astro project for errors
+deno task dev       # Development server
+deno task build     # Build to dist/
+deno task preview   # Preview the production build
+deno task check     # Type-check (installs @astrojs/check on first run)
 ```
 
-**Note**: Deno automatically installs and caches npm dependencies. No separate install step needed!
+## Design system
 
-## 🎨 Customization
+All tokens live at the top of `src/styles/global.css`. Never pure white, never pure
+black — everything is warm.
 
-### Colors
+| Token | Role |
+| --- | --- |
+| `--paper`, `--paper-raised`, `--paper-sunk` | Backgrounds. `#f2efe9` light, warm near-black `#17150f` dark |
+| `--ink`, `--ink-soft`, `--ink-muted`, `--ink-faint` | Text hierarchy |
+| `--rule`, `--rule-soft`, `--rule-strong` | Hairlines. The layout is built from these |
+| `--clay`, `--clay-deep`, `--clay-wash` | The single accent. State and emphasis only, never decoration |
 
-The Messorem purple theme colors are defined in `src/styles/global.css`:
+Three font stacks, three jobs, and no webfont requests: `--font-display` (serif) for
+headings, `--font-sans` for body and UI, `--font-mono` for eyebrows, indices, tags,
+and buttons.
 
-```css
-:root {
-  --purple-50: #faf5ff;
-  --purple-100: #f3e8ff;
-  /* ... more shades ... */
-  --purple-900: #581c87;
+Shared primitives: `.shell`, `.section`, `.section-head`, `.rows` / `.row`,
+`.eyebrow`, `.index`, `.btn`, `.link`, `.tags`, `.status`.
 
-  --accent: var(--purple-600);
-  --accent-hover: var(--purple-700);
-}
-```
+Border radius is `0`. This system does not round corners.
 
-Adjust these CSS variables to match your brand colors.
+### Editing content
 
-### Content
+Page content lives in the frontmatter of `src/pages/index.astro` — the `practice`,
+`credentials`, and `elsewhere` arrays. Title and meta description are in
+`src/layouts/BaseLayout.astro`.
 
-1. **Homepage** (`src/pages/index.astro`):
-   - Update hero section with your personal tagline
-   - Modify the "What I Do" cards
-   - Customize featured projects
+## Deployment
 
-2. **Projects Page** (`src/pages/projects/index.astro`):
-   - Edit the `projects` array with your actual projects
-   - Update project details, tags, and links
+Pushing to `master` triggers `.github/workflows/deploy.yml`, which builds with a
+pinned Deno 2.9.4 and publishes `dist/` to GitHub Pages.
 
-3. **Navigation & Footer**:
-   - Edit `src/components/Header.astro` for navigation items
-   - Update `src/components/Footer.astro` for social links
+GitHub Pages must be set to **GitHub Actions** as the build source, not "Deploy from
+a branch" — the workflow uploads the built artifact rather than serving the repo.
 
-### Adding Blog Posts
+For any other static host, run `deno task build` and deploy `dist/`.
 
-When ready to add blog functionality:
+## Tech
 
-1. Create blog posts in `src/content/blog/`:
+- [Astro](https://astro.build/) — static site generation
+- [Deno](https://deno.com/) — runtime and dependency management
+- Vanilla CSS with custom properties; no preprocessor, no framework
+- Zero JavaScript beyond the theme toggle
 
-```markdown
----
-title: "My First Post"
-description: "This is my first blog post"
-pubDate: 2025-01-15
-author: "Philippe Tremblay"
----
+## Contact
 
-Your content here...
-```
-
-2. Update `src/pages/blog/index.astro` to list and display posts
-
-## 📦 Deployment
-
-### GitHub Pages (Recommended)
-
-This site is configured for GitHub Pages deployment with Deno:
-
-1. **Build the site**:
-   ```bash
-   deno task build
-   ```
-
-2. **The `dist/` folder contains your static site**
-
-3. **For GitHub Pages**:
-   - Push your code to GitHub
-   - In repository settings → Pages, set **Source** to **GitHub Actions**
-     (not "Deploy from a branch" — the workflow publishes the built artifact)
-   - Your site will be live at `https://philtremblay.github.io`
-
-### GitHub Actions (Automated)
-
-The repository includes a GitHub Actions workflow (`.github/workflows/deploy.yml`) that automatically builds and deploys on push to `master`:
-
-- Uses Deno 2.9.4 (pinned in the workflow)
-- Automatic dependency caching for faster builds
-- Deploys to GitHub Pages automatically
-- No manual dependency installation needed
-
-### Other Hosting Options
-
-**Vercel**:
-```bash
-deno task build
-# Deploy the dist/ folder via Vercel UI or CLI
-```
-
-**Netlify**:
-```bash
-deno task build
-# Deploy the dist/ folder via Netlify UI or CLI
-```
-
-**Self-Hosting**:
-```bash
-deno task build
-# Copy dist/ folder to your web server
-```
-
-## 🛠️ Tech Stack
-
-- **Framework**: [Astro](https://astro.build/) - The web framework for content-driven websites
-- **Runtime**: [Deno](https://deno.com/) - Modern, secure JavaScript/TypeScript runtime
-- **Styling**: Vanilla CSS with CSS Variables (no preprocessors needed!)
-- **Icons**: Inline SVG for performance
-- **Typography**: System font stack for fast loading
-- **Deployment**: GitHub Pages / Vercel / Netlify
-
-### Why Deno?
-
-- ✅ **No separate install step** - Dependencies are automatically cached
-- ✅ **Faster startup** - Built-in TypeScript support
-- ✅ **Modern tooling** - All-in-one runtime with formatting, linting, and testing
-- ✅ **Secure by default** - Explicit permissions model
-- ✅ **npm compatibility** - Works seamlessly with npm packages like Astro
-
-## 🎯 Performance
-
-This website is optimized for maximum performance:
-
-- ✅ **Zero JavaScript** on initial load (Astro's island architecture)
-- ✅ **Minimal CSS** - ~10KB
-- ✅ **No external dependencies** in production
-- ✅ **Optimized images** - Use modern formats
-- ✅ **Perfect Lighthouse scores** possible
-
-## 📄 License
-
-© 2025 Philippe Tremblay. All rights reserved.
-
-## 🤝 Contributing
-
-This is a personal portfolio, but feel free to:
-- Report bugs
-- Suggest improvements
-- Use as inspiration for your own portfolio
-
-## 📞 Contact
-
-- **LinkedIn**: [philippe-tremblay-36219485](https://www.linkedin.com/in/philippe-tremblay-36219485/)
-- **GitHub**: [@philtremblay](https://github.com/philtremblay)
-- **Cycling**: [Messo Rem Club Cycliste](https://www.instagram.com/messoremclubcycliste/)
+- LinkedIn — [philippe-tremblay-36219485](https://www.linkedin.com/in/philippe-tremblay-36219485/)
+- GitHub — [@philtremblay](https://github.com/philtremblay)
 
 ---
 
-Built with 💜 using Astro
+© Philippe Tremblay

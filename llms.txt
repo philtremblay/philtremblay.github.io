@@ -1,11 +1,25 @@
 # Philippe Tremblay - Portfolio Website
 
-> Minimal portfolio website built with Astro.js in a Danish/Scandinavian minimalist design system.
-> Static site showcasing software engineering expertise, projects, and professional background.
+> Personal site built with Astro.js in a Danish/Scandinavian minimalist design system.
+> Single-page static site: a deliberately lean name anchor, not a portfolio.
 
 ## Project Overview
 
-A personal portfolio for Philippe Tremblay — software engineer, founder, and McGill Software Engineering graduate. Built with Astro.js for performance and SEO. Danish minimalist design: warm paper background, hairline rules, mono eyebrow labels, one muted clay accent, light/dark toggle, fully responsive.
+A single-page personal site for Philippe Tremblay — software engineer, McGill Software
+Engineering graduate, based in Montréal. Built with Astro.js for performance and SEO.
+Danish minimalist design: warm paper background, hairline rules, mono eyebrow labels,
+one muted clay accent, light/dark toggle, fully responsive.
+
+PURPOSE AND CONSTRAINTS — read before editing copy:
+The site's job is to be findable and credible, nothing more. It is deliberately
+credential-neutral: it describes proven capability (distributed systems, cloud, ML,
+certifications) and says nothing about what Phil is currently building. That is
+intentional, not an oversight.
+- Do NOT name or hint at the current venture, its domain, product, or market.
+  "Currently building something new" in the hero is the only permitted reference.
+- Do NOT re-add Bounce. It was removed on purpose.
+- Do NOT pad with placeholder projects, invented work, or a stub blog.
+Keep it short. Brevity is the design.
 
 Design lineage: structural cues (mono eyebrows, rule-separated rows, grain over flat colour, strict token system) adapted from hermes-agent.nousresearch.com; palette and typography are Danish minimalist rather than Hermes's electric blue.
 
@@ -29,7 +43,7 @@ This is an Astro.js static site using:
 - **Type Safety**: TypeScript configuration with strict mode
 - **Theme System**: CSS variables + data-theme attribute + localStorage persistence, set by a blocking inline script in BaseLayout so there is no flash of the wrong palette
 - **SEO**: Meta tags, Open Graph, canonical URLs in BaseLayout
-- **Responsive Design**: Mobile-first CSS with breakpoints at 768px
+- **Responsive Design**: Mobile-first CSS; breakpoints at 640px, 768px, and 1200px
 
 ## Key Files
 
@@ -44,23 +58,18 @@ This is an Astro.js static site using:
   * Accepts title and description props
   * Includes global.css import
   * Sets up canonical URLs and Open Graph tags
-- /src/components/Header.astro - Sticky masthead. Two-row grid on mobile (wordmark+toggle, then nav) collapsing to one row at 640px. No hamburger, no nav JS.
+- /src/components/Header.astro - Sticky masthead: wordmark and theme toggle only. Single-page site, so there is no navigation.
   * Theme toggle with localStorage persistence
-  * Gradient logo text effect
-  * Responsive navigation (hamburger menu on mobile)
-- /src/components/Footer.astro - Site footer with social links and navigation
-  * Social icons: LinkedIn, GitHub, Instagram
+- /src/components/Footer.astro - Colophon: name, location, LinkedIn/GitHub, year
+  * Links: LinkedIn, GitHub
   * Copyright notice with dynamic year
 
 ### Pages
-- /src/pages/index.astro - Homepage
-  * Hero (eyebrow, serif headline, lede, two CTAs)
-  * "What I do" — capabilities as hairline-separated rows
-  * "Current work" — active work with status markers and tags
-  * "Off the clock" — cycling; "Let's talk" — contact
-- /src/pages/projects/index.astro - Current work, previous ventures, credentials register
-- /src/pages/blog/index.astro - Notes index. Renders an empty state when `posts` is
-  empty rather than padding with placeholder posts.
+- /src/pages/index.astro - The only page
+  * Hero: location eyebrow, name as serif H1, lede, LinkedIn/GitHub buttons
+  * "Practice" (01) — four capability rows, hairline-separated
+  * "Credentials" (02) — CKA, two GCP certs, McGill B.Eng., as a register
+  * "Off the clock" (03) — one line, cycling
 
 ### Styles
 - /src/styles/global.css - Design system: tokens, reset, type scale, shared primitives
@@ -127,7 +136,7 @@ deno task check    # Type-check the Astro project
 ├── src/
 │   ├── components/      # Reusable UI components
 │   ├── layouts/         # Page layout templates
-│   ├── pages/           # File-based routing (index, projects, blog)
+│   ├── pages/           # File-based routing (index only)
 │   ├── styles/          # Global CSS with theme variables
 │   └── env.d.ts        # TypeScript environment definitions
 ├── astro.config.mjs    # Astro configuration
@@ -139,24 +148,22 @@ deno task check    # Type-check the Astro project
 ## Customization Guide
 
 ### Personal Information
-- Hero copy and the `capabilities` / `work` arrays are in the frontmatter of /src/pages/index.astro
-- Projects page data lives in the `current` / `previously` / `credentials` arrays in /src/pages/projects/index.astro
+- The `practice`, `credentials`, and `elsewhere` arrays in /src/pages/index.astro frontmatter hold all page data
 - Social links are in the `links` array in /src/components/Footer.astro
 - Default title and meta description are in /src/layouts/BaseLayout.astro frontmatter
 
 ### Theme Colors
 - Edit the token blocks at the top of /src/styles/global.css (:root and [data-theme='dark'])
-- Change accent color by modifying --accent and --accent-hover variables
+- The single accent is --clay (plus --clay-deep / --clay-wash); there is no second accent
 - Dark mode colors controlled by [data-theme='dark'] selectors
 
 ### Navigation
-- Edit the `navItems` array in /src/components/Header.astro
+- None. Single page; the header carries only the wordmark and theme toggle.
 - Update the `links` array in /src/components/Footer.astro
 
-### Adding Blog Posts
-- Create markdown files in /src/content/blog/ (structure prepared)
-- Update /src/pages/blog/index.astro to list posts
-- Consider adding Astro content collections for type-safe blog posts
+### Adding a Blog Later
+- /src/pages/blog/ was removed rather than left as an empty stub. If writing starts,
+  reintroduce it with Astro content collections and real posts — not a "coming soon" page.
 
 ## Deployment
 
@@ -171,6 +178,8 @@ Manual deployment: Build with `deno task build` and deploy /dist/ folder to any 
 
 ## Recent Changes
 
+- 2026-08-04: Cut to a single page. Removed /projects and /blog, dropped Bounce, and
+  rewrote copy to be credential-neutral (no reference to the current venture)
 - 2026-08-03: Danish minimalist redesign — new token system, mono eyebrows, rule-separated
   rows, grain texture; removed six fabricated placeholder projects and all emoji
 - 2026-08-03: Upgraded to Deno 2.9.4 and pinned the version in CI; committed deno.lock
@@ -190,4 +199,4 @@ Manual deployment: Build with `deno task build` and deploy /dist/ folder to any 
 - Build output is excluded from git (see .gitignore for dist/, node_modules/); deno.lock IS committed
 - Site is optimized for perfect Lighthouse scores (minimal CSS, zero JS overhead)
 - Personal information (name, LinkedIn, GitHub) is scattered across multiple files
-- Blog structure exists but is not populated with actual posts yet
+- There is no blog and no projects page. Both were removed deliberately; see the purpose note above.
