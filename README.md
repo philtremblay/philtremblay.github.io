@@ -1,110 +1,50 @@
 # philtremblay.github.io
 
-Personal site for Philippe Tremblay — a single page, built with Astro and served
-from GitHub Pages.
+Single-page personal site. Astro + Deno, deployed to GitHub Pages on every push to
+`master`.
 
-The design is Danish minimalist: warm paper, ink, hairline rules, mono labels, and
-exactly one muted accent. Structural cues (mono eyebrows, rule-separated rows, grain
-over flat colour, a strict token system) are adapted from
-[hermes-agent.nousresearch.com](https://hermes-agent.nousresearch.com/); the palette
-and typography are Danish rather than Hermes's electric blue.
+Live: <https://philtremblay.github.io>
 
-## Scope
-
-The site is a name anchor, not a portfolio. It states proven capability and nothing
-about current work. That is deliberate — see the constraints in [`llms.txt`](llms.txt)
-before changing copy.
-
-## Structure
-
-```
-/
-├── .github/workflows/       # GitHub Actions deploy
-├── public/                  # robots.txt
-├── src/
-│   ├── components/
-│   │   ├── Header.astro     # Sticky masthead: wordmark + theme toggle
-│   │   └── Footer.astro     # Colophon
-│   ├── layouts/
-│   │   └── BaseLayout.astro # SEO, favicon, pre-paint theme script
-│   ├── pages/
-│   │   └── index.astro      # The only page
-│   └── styles/
-│       └── global.css       # Design system: tokens and primitives
-├── astro.config.mjs
-├── deno.json                # Tasks and npm import map
-└── deno.lock                # Committed lockfile
-```
-
-## Getting started
-
-Requires [Deno](https://deno.com/) 2.9.4 or higher. There is no install step — Deno
-resolves and caches npm dependencies on the first task run.
+## Run it
 
 ```bash
-git clone https://github.com/philtremblay/philtremblay.github.io.git
-cd philtremblay.github.io
-deno task dev
+deno task dev      # localhost:4321
+deno task build    # -> dist/
+deno task preview  # serve the built output
 ```
 
-Serves at `http://localhost:4321`.
+Needs Deno 2.9.4 or newer. There is no install step — Deno resolves and caches npm
+dependencies on the first task run.
 
-```bash
-deno task dev       # Development server
-deno task build     # Build to dist/
-deno task preview   # Preview the production build
-deno task check     # Type-check (installs @astrojs/check on first run)
-```
+## Before you change anything
 
-## Design system
+- **Copy rules live in [`llms.txt`](llms.txt).** The site is deliberately
+  credential-neutral and says nothing about current work. Read that first — the
+  constraints there are intentional, not gaps to fill.
+- **Design tokens** are at the top of `src/styles/global.css`. Warm paper and ink,
+  hairline rules, one clay accent, no border radius. Changing a token changes the
+  whole page; there are no per-component colours.
+- **Page content** is the `practice`, `credentials`, and `elsewhere` arrays in the
+  frontmatter of `src/pages/index.astro`. Title and meta description are in
+  `src/layouts/BaseLayout.astro`.
 
-All tokens live at the top of `src/styles/global.css`. Never pure white, never pure
-black — everything is warm.
+Design lineage: structural cues — mono eyebrow labels, rule-separated rows, grain over
+flat colour — are adapted from [hermes-agent.nousresearch.com](https://hermes-agent.nousresearch.com/).
+The palette and typography are Danish minimalist rather than Hermes's electric blue.
 
-| Token | Role |
-| --- | --- |
-| `--paper`, `--paper-raised`, `--paper-sunk` | Backgrounds. `#f2efe9` light, warm near-black `#17150f` dark |
-| `--ink`, `--ink-soft`, `--ink-muted`, `--ink-faint` | Text hierarchy |
-| `--rule`, `--rule-soft`, `--rule-strong` | Hairlines. The layout is built from these |
-| `--clay`, `--clay-deep`, `--clay-wash` | The single accent. State and emphasis only, never decoration |
+## Things that will bite you
 
-Three font stacks, three jobs, and no webfont requests: `--font-display` (serif) for
-headings, `--font-sans` for body and UI, `--font-mono` for eyebrows, indices, tags,
-and buttons.
-
-Shared primitives: `.shell`, `.section`, `.section-head`, `.rows` / `.row`,
-`.eyebrow`, `.index`, `.btn`, `.link`, `.tags`, `.status`.
-
-Border radius is `0`. This system does not round corners.
-
-### Editing content
-
-Page content lives in the frontmatter of `src/pages/index.astro` — the `practice`,
-`credentials`, and `elsewhere` arrays. Title and meta description are in
-`src/layouts/BaseLayout.astro`.
-
-## Deployment
-
-Pushing to `master` triggers `.github/workflows/deploy.yml`, which builds with a
-pinned Deno 2.9.4 and publishes `dist/` to GitHub Pages.
-
-GitHub Pages must be set to **GitHub Actions** as the build source, not "Deploy from
-a branch" — the workflow uploads the built artifact rather than serving the repo.
-
-For any other static host, run `deno task build` and deploy `dist/`.
-
-## Tech
-
-- [Astro](https://astro.build/) — static site generation
-- [Deno](https://deno.com/) — runtime and dependency management
-- Vanilla CSS with custom properties; no preprocessor, no framework
-- Zero JavaScript beyond the theme toggle
-
-## Contact
-
-- LinkedIn — [philippe-tremblay-36219485](https://www.linkedin.com/in/philippe-tremblay-36219485/)
-- GitHub — [@philtremblay](https://github.com/philtremblay)
-
----
-
-© Philippe Tremblay
+- **GitHub Pages must be set to "GitHub Actions"**, not "Deploy from a branch". The
+  workflow uploads a built artifact; branch-serving would publish raw source. Switching
+  it back breaks the site.
+- **`deno task check` does not type-check on a fresh checkout.** It stops at an
+  interactive prompt to install `@astrojs/check` and waits, so it will stall any
+  non-interactive run. Install them once up front: `deno add npm:@astrojs/check npm:typescript`.
+- **The theme script in `BaseLayout.astro` must stay inline and blocking.** Move it,
+  defer it, or bundle it and every page load flashes the wrong palette before
+  correcting.
+- **`deno.lock` is committed on purpose**, unlike most Deno templates. It pins the
+  dependency graph so CI matches local, and it makes the workflow's cache key
+  meaningful. Do not re-add it to `.gitignore`.
+- **Astro is two majors behind** — 5.15.8 pinned in `deno.json`, 7.1.6 current. Fine
+  for now; expect breaking changes whenever it gets upgraded.
