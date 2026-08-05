@@ -11,6 +11,7 @@ Live: <https://philtremblay.github.io>
 deno task dev      # localhost:4321
 deno task build    # -> dist/
 deno task preview  # serve the built output
+deno task check    # type-check; exits non-zero on error
 ```
 
 Needs Deno 2.9.4 or newer. There is no install step — Deno resolves and caches npm
@@ -37,9 +38,11 @@ The palette and typography are Danish minimalist rather than Hermes's electric b
 - **GitHub Pages must be set to "GitHub Actions"**, not "Deploy from a branch". The
   workflow uploads a built artifact; branch-serving would publish raw source. Switching
   it back breaks the site.
-- **`deno task check` does not type-check on a fresh checkout.** It stops at an
-  interactive prompt to install `@astrojs/check` and waits, so it will stall any
-  non-interactive run. Install them once up front: `deno add npm:@astrojs/check npm:typescript`.
+- **`typescript` is pinned to 6.0.3 and must stay on the 6.x line.** TypeScript 7's
+  native compiler dropped the programmatic API `astro check` depends on, so bumping it
+  to `latest` breaks `deno task check` with a confusing error from inside
+  `@astrojs/language-server`. Track
+  [withastro/roadmap#1321](https://github.com/withastro/roadmap/discussions/1321).
 - **The theme script in `BaseLayout.astro` must stay inline and blocking.** Move it,
   defer it, or bundle it and every page load flashes the wrong palette before
   correcting.

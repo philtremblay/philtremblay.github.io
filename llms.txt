@@ -48,7 +48,9 @@ This is an Astro.js static site using:
 ## Key Files
 
 ### Configuration
-- /deno.json - Deno tasks, npm import map (Astro 5.15.8), nodeModulesDir: auto
+- /deno.json - Deno tasks and npm import map, nodeModulesDir: auto
+  * astro 5.15.8, @astrojs/check ^0.9.10, typescript 6.0.3
+  * typescript MUST stay on 6.x — TS 7 dropped the programmatic API `astro check` uses
 - /deno.lock - Committed lockfile pinning the full dependency graph
 - /astro.config.mjs - Astro config for GitHub Pages (site, base path)
 - /tsconfig.json - TypeScript strict mode configuration
@@ -125,7 +127,7 @@ All colors defined as CSS variables in /src/styles/global.css for easy customiza
 deno task dev      # Start dev server at http://localhost:4321
 deno task build    # Build static site to /dist/
 deno task preview  # Preview production build locally
-deno task check    # Type-check the Astro project
+deno task check    # Type-check the Astro project (exits non-zero on error)
 ```
 
 ### Project Structure
