@@ -1,17 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// The page sells a small consulting practice. One lead offering carries the
-// position; the rest are listed so a warm visitor can see the range, not so a
-// cold one can browse a menu. Dravr appears as provenance for the expertise —
-// never as a product, never linked. Read CLAUDE.md before changing copy.
-const lead = {
-  title: 'Agent harness enablement',
-  body:
-    'Coding agents in a real repository, without losing control of it: instructions the agent actually follows, hooks that enforce process rather than suggest it, gates that fail closed, and a register that makes unfinished work visible instead of invisible. Delivered as a two-day team workshop, or as implementation alongside your engineers.',
-};
-
-const alsoPractice = [
+// The page sells a small consulting practice. One list, in order: the first
+// entry is the one Phil actually leads with, and its position is the only
+// thing that says so — no second block, no label. Dravr appears as provenance
+// for the expertise — never as a product, never linked. Read CLAUDE.md before
+// changing copy.
+const practice = [
+  {
+    title: 'Agent harness enablement',
+    body:
+      'Coding agents in a real repository, without losing control of it: instructions the agent actually follows, hooks that enforce process rather than suggest it, gates that fail closed, and a register that makes unfinished work visible instead of invisible. Delivered as a two-day team workshop, or as implementation alongside your engineers.',
+  },
   {
     title: 'Private and sovereign AI deployment',
     body:
@@ -84,18 +84,11 @@ const elsewhere = [
         <span class="eyebrow">01</span>
       </div>
 
-      <article class="lead-offer">
-        <h3 class="lead-title">{lead.title}</h3>
-        <p class="lead-body">{lead.body}</p>
-      </article>
-
-      <p class="eyebrow also-label">Also</p>
-
       <div class="rows">
         {
-          alsoPractice.map((item, i) => (
+          practice.map((item, i) => (
             <article class="row">
-              <span class="index">{String(i + 2).padStart(2, '0')}</span>
+              <span class="index">{String(i + 1).padStart(2, '0')}</span>
               <h3 class="row-title">{item.title}</h3>
               <p class="row-body">{item.body}</p>
             </article>
@@ -196,32 +189,6 @@ const elsewhere = [
     display: flex;
     flex-wrap: wrap;
     gap: var(--s-5);
-  }
-
-  /* The lead offering is the position. It gets weight the rows do not —
-     type size and measure, no longer a rule under it. */
-  .lead-offer {
-    display: grid;
-    gap: var(--s-3);
-    padding: var(--s-5) 0 0;
-  }
-
-  .lead-title {
-    font-size: var(--step-2);
-    line-height: 1.2;
-    color: var(--ink);
-  }
-
-  .lead-body {
-    color: var(--ink-soft);
-    font-size: var(--step-1);
-    line-height: 1.6;
-    max-width: 58ch;
-  }
-
-  .also-label {
-    display: block;
-    padding: var(--s-6) 0 var(--s-4);
   }
 
   .prose {

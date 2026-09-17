@@ -26,7 +26,7 @@ dependencies on the first task run.
   hairline rules, one clay accent, no border radius. Changing a token changes the
   whole page; there are no per-component colours. Newsreader and Plus Jakarta Sans
   load from Google Fonts — the only external requests the page makes.
-- **Page content** is the `lead`, `alsoPractice`, `credentials`, and `elsewhere` arrays
+- **Page content** is the `practice`, `credentials`, and `elsewhere` arrays
   in the frontmatter of `src/pages/index.astro`. Title and meta description are in
   `src/layouts/BaseLayout.astro`.
 

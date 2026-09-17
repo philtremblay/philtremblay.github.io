@@ -9,7 +9,7 @@ exists so the person you spoke to finds something real when they look you up.
 ## Project map
 
 - `src/pages/index.astro` — the only page. All copy lives in its frontmatter arrays:
-  `lead`, `alsoPractice`, `credentials`, `elsewhere`.
+  `practice`, `credentials`, `elsewhere`.
 - `src/layouts/BaseLayout.astro` — SEO, Open Graph, the Google Fonts links, the inline
   theme script, default `title` and `description`.
 - `src/components/Header.astro` — sticky bar: wordmark and theme toggle. No navigation;
@@ -35,9 +35,17 @@ rules replace it — they are narrower, not absent.
   expertise comes from. Do not link it, do not name the fitness or endurance domain, do
   not describe features, do not add marketing copy for it. A prospect should read it and
   think "that is why he knows this", not "he is selling me a fitness app".
-- **One lead offering carries the position.** `lead` is the headline; `alsoPractice` is a
-  short list so a warm visitor can see the range. Do not promote an `also` item to equal
-  weight — five equal offerings read as a directory, and the page stops saying anything.
+- **`practice` is one list, and its order is the hierarchy.** The first entry is the
+  offering Phil leads with; position is the only thing that says so. An earlier version
+  split it into a weighted `lead` block above an "Also" label — **that was reversed on
+  2026-09-17** because two tiers plus a label read as more structure than four items and
+  a paragraph can carry. Do not reintroduce a second block, an "Also" heading, or a
+  larger type size for the first row.
+- **The hero lede is what stops the list reading as a menu**, now that the rows are
+  uniform. It ends by naming the lead offering in plain words ("mostly putting coding
+  agents to work under real engineering discipline"). If the first entry of `practice`
+  ever changes, that sentence changes with it — otherwise the page lists five things and
+  asserts none of them.
 - **State no credential that is not verifiable, and no title that is not held.** See the
   credentials block below; those constraints are legal, not stylistic.
 - **Name no client without written permission.**
@@ -85,7 +93,7 @@ no per-component colours, so changing a token changes the whole page.
   2026-09-17: they read as an accordion and each one needs symmetric padding to breathe,
   which was most of the page's height for none of its meaning. Rows are separated by `gap`
   alone, at roughly 3:1 against the gap inside a row. **Do not add `border-bottom` to
-  `.row`, `.lead-offer` or `.hero`.**
+  `.row` or `.hero`.**
 - **Rules are translucent** (`rgba(155, 165, 159, …)`) so one value reads correctly on
   every surface tier. Do not replace them with a solid hex.
 - **The accent is `--clay` `#9d4b33`, and there is exactly one.** It measures 5.24:1 on
