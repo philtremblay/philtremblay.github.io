@@ -80,6 +80,12 @@ no per-component colours, so changing a token changes the whole page.
 
 - **Ground is `#f7f6f2`**, cards are pure `#ffffff` lifted by a hairline — never by a fill
   step. Hairlines lift; the system has no shadows.
+- **A hairline only ever sits under a heading.** The masthead, each `.section-head`, and the
+  footer's top edge — that is the complete set. Rules between every row were removed on
+  2026-09-17: they read as an accordion and each one needs symmetric padding to breathe,
+  which was most of the page's height for none of its meaning. Rows are separated by `gap`
+  alone, at roughly 3:1 against the gap inside a row. **Do not add `border-bottom` to
+  `.row`, `.lead-offer` or `.hero`.**
 - **Rules are translucent** (`rgba(155, 165, 159, …)`) so one value reads correctly on
   every surface tier. Do not replace them with a solid hex.
 - **The accent is `--clay` `#9d4b33`, and there is exactly one.** It measures 5.24:1 on
@@ -91,8 +97,8 @@ no per-component colours, so changing a token changes the whole page.
 - **Dark is not an inversion.** `#141613` ground, `#e8e9e4` ink, clay warms to `#c9704f`.
   Both schemes must read as one product — if you pull warmth out of one, pull it out of
   the other.
-- Design lineage: structural cues (mono eyebrows, rule-separated rows, grain over flat
-  colour) adapted from hermes-agent.nousresearch.com; the palette, the hairline
+- Design lineage: structural cues (mono eyebrows, grain over flat colour, hairlines under
+  headings) adapted from hermes-agent.nousresearch.com; the palette, the hairline
   discipline and the type are drawn from Dravr's Boreal v2 system without taking Boreal's
   identity — Dravr's sage green and its mark appear nowhere here, deliberately.
 </important>

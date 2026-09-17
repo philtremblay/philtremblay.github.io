@@ -2,7 +2,7 @@
    Danish minimalist design system
    Warm paper, ink, hairline rules, one muted accent.
    Structure borrows from hermes-agent.nousresearch.com:
-   mono eyebrows, rule-separated blocks, grain over flat colour.
+   mono eyebrows, grain over flat colour, hairlines under headings only.
    ============================================================ */
 
 *,
@@ -260,18 +260,18 @@ a {
 /* ---------- Section ---------- */
 
 .section {
-  padding: var(--s-6) 0;
+  padding: var(--s-5) 0;
 }
 
 @media (min-width: 768px) {
   .section {
-    padding: var(--s-7) 0;
+    padding: var(--s-6) 0;
   }
 }
 
-/* Section header: eyebrow over a hairline, editorial masthead style.
-   Its rule doubles as the top edge of the list beneath it — hence no
-   margin here and no border-top on .rows. */
+/* Section header: eyebrow over a hairline, editorial masthead style. This is
+   the only hairline the page repeats — one under each heading, plus the
+   masthead and the footer's top edge. Nothing between rows. */
 .section-head {
   display: flex;
   align-items: baseline;
@@ -284,26 +284,35 @@ a {
 
 /* Standalone prose after a head still needs air. */
 .section-head + :not(.rows) {
-  margin-top: var(--s-5);
+  margin-top: var(--s-4);
 }
 
-/* ---------- Rule-separated rows ----------
-   Replaces cards. Every list is a stack of hairline-divided rows. */
+/* ---------- Rows ----------
+   Replaces cards. A list is a stack of rows separated by gap alone: the only
+   hairlines left on the page sit under a heading. Rules between every row read
+   as an accordion and force symmetric padding around each one to breathe,
+   which is most of the page's height for none of its meaning. The mono index
+   column and the 3:1 ratio between row gap and in-row gap carry the structure.
+*/
 
 .rows {
-  border-top: 1px solid var(--rule);
+  display: grid;
+  gap: var(--s-5);
 }
 
-/* When a list follows a section head, that head's rule is the top edge. */
+/* A list under a section head still needs air below that head's rule. */
 .section-head + .rows {
-  border-top: 0;
+  padding-top: var(--s-5);
+}
+
+/* One-line rows — credentials — pack tighter than rows carrying a paragraph. */
+.rows-tight {
+  gap: var(--s-3);
 }
 
 .row {
   display: grid;
   gap: var(--s-2);
-  padding: var(--s-4) 0;
-  border-bottom: 1px solid var(--rule);
 }
 
 @media (min-width: 768px) {
@@ -311,7 +320,6 @@ a {
     grid-template-columns: 3.5rem minmax(0, 15rem) minmax(0, 1fr);
     gap: var(--s-5);
     align-items: start;
-    padding: var(--s-4) 0;
   }
 }
 

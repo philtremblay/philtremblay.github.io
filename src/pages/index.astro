@@ -130,7 +130,7 @@ const elsewhere = [
         <span class="eyebrow">03</span>
       </div>
 
-      <div class="rows">
+      <div class="rows rows-tight">
         {
           credentials.map((item, i) => (
             <div class="row credential">
@@ -167,13 +167,12 @@ const elsewhere = [
 
 <style>
   .hero {
-    padding: var(--s-6) 0;
-    border-bottom: 1px solid var(--rule);
+    padding: var(--s-5) 0;
   }
 
   @media (min-width: 768px) {
     .hero {
-      padding: var(--s-7) 0;
+      padding: var(--s-6) 0;
     }
   }
 
@@ -190,7 +189,7 @@ const elsewhere = [
     line-height: 1.55;
     color: var(--ink-soft);
     max-width: 48ch;
-    margin-bottom: var(--s-5);
+    margin-bottom: var(--s-4);
   }
 
   .hero-links {
@@ -199,12 +198,12 @@ const elsewhere = [
     gap: var(--s-5);
   }
 
-  /* The lead offering is the position. It gets weight the rows do not. */
+  /* The lead offering is the position. It gets weight the rows do not —
+     type size and measure, no longer a rule under it. */
   .lead-offer {
     display: grid;
     gap: var(--s-3);
-    padding: var(--s-6) 0;
-    border-bottom: 1px solid var(--rule);
+    padding: var(--s-5) 0 0;
   }
 
   .lead-title {
@@ -222,7 +221,7 @@ const elsewhere = [
 
   .also-label {
     display: block;
-    padding: var(--s-5) 0 var(--s-3);
+    padding: var(--s-6) 0 var(--s-4);
   }
 
   .prose {
