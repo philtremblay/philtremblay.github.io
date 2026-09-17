@@ -177,11 +177,16 @@ const elsewhere = [
     margin-bottom: var(--s-4);
   }
 
+  /* Spans the shell, so its edges line up with the section rule below it and
+     with every row on the page. A measure this long would be wrong for running
+     text; it works here because the lede is two lines — a standfirst, not a
+     paragraph. Keep it short enough to stay that way. `none` is needed to beat
+     the global `p { max-width: var(--measure) }`. */
   .hero-lede {
     font-size: var(--step-1);
     line-height: 1.55;
     color: var(--ink-soft);
-    max-width: 48ch;
+    max-width: none;
     margin-bottom: var(--s-4);
   }
 
