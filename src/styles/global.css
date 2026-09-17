@@ -16,33 +16,36 @@
 :root {
   /* --- Paper & ink -------------------------------------------------
      Never pure white, never pure black. Uncoated-stock warmth. */
-  --paper: #f2efe9;
-  --paper-raised: #f8f6f1;
-  --paper-sunk: #e9e5dc;
+  --paper: #f7f6f2;
+  --paper-raised: #ffffff;
+  --paper-sunk: #ebeae5;
 
-  --ink: #1c1a16;
-  --ink-soft: #4a463e;
-  --ink-muted: #7d776c;
-  --ink-faint: #a8a294;
+  --ink: #1a1c1b;
+  --ink-soft: #414845;
+  --ink-muted: #525a55;
+  --ink-faint: #8a918c;
 
-  /* Hairlines. The whole layout is built from these. */
-  --rule: #d8d2c6;
-  --rule-soft: #e4dfd5;
-  --rule-strong: #bdb5a5;
+  /* Hairlines. The whole layout is built from these. Translucent, so one
+     value reads correctly on every surface tier. */
+  --rule: rgba(155, 165, 159, 0.40);
+  --rule-soft: rgba(155, 165, 159, 0.22);
+  --rule-strong: rgba(155, 165, 159, 0.55);
 
   /* --- Accent ------------------------------------------------------
      Exactly one. Muted clay — warm, earthy, Nordic. Used for state
      and emphasis only, never for decoration. */
   --clay: #9d4b33;
   --clay-deep: #7f3b27;
-  --clay-wash: #ede2dc;
+  --clay-wash: #efe6e1;
 
   /* --- Type --------------------------------------------------------
      Three faces, three jobs, zero webfont requests.
-     Serif = display. Grotesque = body/UI. Mono = labels & data. */
-  --font-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua',
-    Georgia, 'Times New Roman', serif;
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Text',
+     Serif = display. Grotesque = body/UI. Mono = labels & data.
+     Newsreader and Plus Jakarta Sans load from Google Fonts in BaseLayout;
+     each keeps a real fallback stack. */
+  --font-display: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Palatino,
+    'Book Antiqua', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'SF Pro Text',
     'Helvetica Neue', Helvetica, system-ui, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Monaco, Consolas,
     'Liberation Mono', monospace;
@@ -81,29 +84,30 @@
 
   /* Paper grain, tiled. The one texture in the system. */
   --grain: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  --grain-opacity: 0.028;
+  --grain-opacity: 0.022;
 
   color-scheme: light;
 }
 
 [data-theme='dark'] {
-  /* Warm near-black. Cold blue-black would break the paper metaphor. */
-  --paper: #17150f;
-  --paper-raised: #1f1c15;
-  --paper-sunk: #100e09;
+  /* Near-black, warmed a touch but not yellow — the light ground lost its
+     yellow cast, and the two schemes have to read as one product. */
+  --paper: #141613;
+  --paper-raised: #1c1e1b;
+  --paper-sunk: #0f110e;
 
-  --ink: #ece7dc;
-  --ink-soft: #c3bdaf;
-  --ink-muted: #8d8578;
-  --ink-faint: #635d52;
+  --ink: #e8e9e4;
+  --ink-soft: #b0b6b2;
+  --ink-muted: #878e8a;
+  --ink-faint: #666d69;
 
-  --rule: #332f25;
-  --rule-soft: #26231b;
-  --rule-strong: #4b463a;
+  --rule: rgba(160, 175, 168, 0.22);
+  --rule-soft: rgba(160, 175, 168, 0.12);
+  --rule-strong: rgba(160, 175, 168, 0.36);
 
   --clay: #c9704f;
   --clay-deep: #dd8a68;
-  --clay-wash: #2b201a;
+  --clay-wash: #2a1f1a;
 
   --grain-opacity: 0.045;
 
@@ -168,7 +172,8 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 400;
+  font-optical-sizing: auto;
+  font-weight: 500;
   line-height: 1.12;
   letter-spacing: -0.012em;
   color: var(--ink);
@@ -255,12 +260,12 @@ a {
 /* ---------- Section ---------- */
 
 .section {
-  padding: var(--s-7) 0;
+  padding: var(--s-6) 0;
 }
 
 @media (min-width: 768px) {
   .section {
-    padding: var(--s-8) 0;
+    padding: var(--s-7) 0;
   }
 }
 
@@ -279,7 +284,7 @@ a {
 
 /* Standalone prose after a head still needs air. */
 .section-head + :not(.rows) {
-  margin-top: var(--s-6);
+  margin-top: var(--s-5);
 }
 
 /* ---------- Rule-separated rows ----------
@@ -297,7 +302,7 @@ a {
 .row {
   display: grid;
   gap: var(--s-2);
-  padding: var(--s-5) 0;
+  padding: var(--s-4) 0;
   border-bottom: 1px solid var(--rule);
 }
 
@@ -306,7 +311,7 @@ a {
     grid-template-columns: 3.5rem minmax(0, 15rem) minmax(0, 1fr);
     gap: var(--s-5);
     align-items: start;
-    padding: var(--s-5) 0;
+    padding: var(--s-4) 0;
   }
 }
 
@@ -371,6 +376,22 @@ a {
 }
 
 .link:hover {
+  color: var(--clay);
+  box-shadow: inset 0 -1px 0 0 var(--clay);
+}
+
+/* Small mono link. The hero uses these instead of buttons — the same two
+   destinations already sit in the footer, so they do not need the weight. */
+.link-mono {
+  font-family: var(--font-mono);
+  font-size: var(--eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-muted);
+  box-shadow: inset 0 -1px 0 0 var(--rule);
+}
+
+.link-mono:hover {
   color: var(--clay);
   box-shadow: inset 0 -1px 0 0 var(--clay);
 }

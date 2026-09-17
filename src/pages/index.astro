@@ -1,32 +1,46 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// Deliberately credential-neutral: what is proven, nothing about what is
-// currently being built. Keep it that way.
-const practice = [
+// The page sells a small consulting practice. One lead offering carries the
+// position; the rest are listed so a warm visitor can see the range, not so a
+// cold one can browse a menu. Dravr appears as provenance for the expertise —
+// never as a product, never linked. Read CLAUDE.md before changing copy.
+const lead = {
+  title: 'Agent harness enablement',
+  body:
+    'Coding agents in a real repository, without losing control of it: instructions the agent actually follows, hooks that enforce process rather than suggest it, gates that fail closed, and a register that makes unfinished work visible instead of invisible. Delivered as a two-day team workshop, or as implementation alongside your engineers.',
+};
+
+const alsoPractice = [
   {
-    title: 'Distributed Systems',
-    body: 'Event-driven services, data pipelines, and the failure modes that only surface at scale.',
+    title: 'Private and sovereign AI deployment',
+    body:
+      "Model routing that keeps sensitive turns in-region, private inference on Kubernetes or OpenShift, and the cross-border transfer assessments Québec's Law 25 requires — which almost nobody has actually written.",
   },
   {
-    title: 'Cloud Architecture',
-    body: 'Designing systems that stay predictable as they grow, and legible to the people who run them.',
+    title: 'Platform and reliability engineering',
+    body:
+      'Golden paths, infrastructure as code, deployment pipelines, and enough observability to know whether any of it is working.',
   },
   {
-    title: 'Kubernetes',
-    body: 'Orchestration and the operational work that decides whether a platform holds up in production.',
+    title: 'Technical due diligence',
+    body:
+      'Scalability, security posture and IP hygiene, read the way a site reliability engineer reads them. For acquirers, and for founders about to become one.',
   },
   {
-    title: 'Machine Learning',
-    body: 'Applied ML in production systems — the engineering around the model, more than the model.',
+    title: 'Observability migration',
+    body:
+      'OpenTelemetry, Prometheus and Grafana — usually replacing a per-host bill that stopped making sense two renewals ago.',
   },
 ];
 
+// B.Sc., not B.Eng. — the McGill degree is through Science, and this page sells
+// services, so the credential has to be exact. Do not "correct" it.
 const credentials = [
   { title: 'Certified Kubernetes Administrator', note: 'CKA' },
   { title: 'Google Cloud — Professional Cloud Architect', note: 'GCP' },
   { title: 'Google Cloud — Professional Data Engineer', note: 'GCP' },
-  { title: 'McGill University — Software Engineering', note: 'B.Eng.' },
+  { title: 'McGill University — Software Engineering', note: 'B.Sc.' },
 ];
 
 const elsewhere = [
@@ -44,14 +58,16 @@ const elsewhere = [
       <h1 class="hero-title">Philippe Tremblay</h1>
 
       <p class="hero-lede">
-        Software engineer. Distributed systems, cloud infrastructure, and
-        machine learning. Currently building something new.
+        Distributed systems and cloud infrastructure — a decade of it, at
+        Nasdaq, Metrio, Element AI and Desjardins. I take a small number of
+        consulting mandates a year, mostly putting coding agents to work under
+        real engineering discipline.
       </p>
 
       <nav class="hero-links" aria-label="Elsewhere">
         {
           elsewhere.map((link) => (
-            <a href={link.href} target="_blank" rel="noopener" class="btn">
+            <a href={link.href} target="_blank" rel="noopener" class="link-mono">
               {link.name}
             </a>
           ))
@@ -68,11 +84,18 @@ const elsewhere = [
         <span class="eyebrow">01</span>
       </div>
 
+      <article class="lead-offer">
+        <h3 class="lead-title">{lead.title}</h3>
+        <p class="lead-body">{lead.body}</p>
+      </article>
+
+      <p class="eyebrow also-label">Also</p>
+
       <div class="rows">
         {
-          practice.map((item, i) => (
+          alsoPractice.map((item, i) => (
             <article class="row">
-              <span class="index">{String(i + 1).padStart(2, '0')}</span>
+              <span class="index">{String(i + 2).padStart(2, '0')}</span>
               <h3 class="row-title">{item.title}</h3>
               <p class="row-body">{item.body}</p>
             </article>
@@ -82,12 +105,29 @@ const elsewhere = [
     </div>
   </section>
 
+  <!-- ---------- Currently ---------- -->
+  <section class="section">
+    <div class="shell">
+      <div class="section-head">
+        <h2>Currently</h2>
+        <span class="eyebrow">02</span>
+      </div>
+
+      <p class="prose">
+        Co-founder of Dravr, a multi-tenant platform written in Rust with a
+        production MCP server across three transports. Two people build it,
+        running the harness described above every day. Most of what is on this
+        page comes from there.
+      </p>
+    </div>
+  </section>
+
   <!-- ---------- Credentials ---------- -->
   <section class="section">
     <div class="shell">
       <div class="section-head">
         <h2>Credentials</h2>
-        <span class="eyebrow">02</span>
+        <span class="eyebrow">03</span>
       </div>
 
       <div class="rows">
@@ -109,17 +149,17 @@ const elsewhere = [
     <div class="shell">
       <div class="section-head">
         <h2>Off the clock</h2>
-        <span class="eyebrow">03</span>
+        <span class="eyebrow">04</span>
       </div>
 
-      <p class="off-clock">
+      <p class="prose">
         Racing with
         <a
           href="https://www.instagram.com/messoremclubcycliste/"
           target="_blank"
           rel="noopener"
           class="link">Messorem Club Cycliste</a
-        >.
+        >. Before that, seven years on the ITU triathlon circuit.
       </p>
     </div>
   </section>
@@ -127,36 +167,69 @@ const elsewhere = [
 
 <style>
   .hero {
-    padding: var(--s-8) 0 var(--s-7);
+    padding: var(--s-6) 0;
     border-bottom: 1px solid var(--rule);
   }
 
   @media (min-width: 768px) {
     .hero {
-      padding: var(--s-9) 0 var(--s-8);
+      padding: var(--s-7) 0;
     }
   }
 
   .hero-eyebrow {
-    margin-bottom: var(--s-4);
+    margin-bottom: var(--s-3);
   }
 
   .hero-title {
-    margin-bottom: var(--s-5);
+    margin-bottom: var(--s-4);
   }
 
   .hero-lede {
     font-size: var(--step-1);
     line-height: 1.55;
     color: var(--ink-soft);
-    max-width: 42ch;
-    margin-bottom: var(--s-6);
+    max-width: 48ch;
+    margin-bottom: var(--s-5);
   }
 
   .hero-links {
     display: flex;
     flex-wrap: wrap;
+    gap: var(--s-5);
+  }
+
+  /* The lead offering is the position. It gets weight the rows do not. */
+  .lead-offer {
+    display: grid;
     gap: var(--s-3);
+    padding: var(--s-6) 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .lead-title {
+    font-size: var(--step-2);
+    line-height: 1.2;
+    color: var(--ink);
+  }
+
+  .lead-body {
+    color: var(--ink-soft);
+    font-size: var(--step-1);
+    line-height: 1.6;
+    max-width: 58ch;
+  }
+
+  .also-label {
+    display: block;
+    padding: var(--s-5) 0 var(--s-3);
+  }
+
+  .prose {
+    color: var(--ink-soft);
+    font-size: var(--step-1);
+    line-height: 1.6;
+    max-width: 58ch;
   }
 
   .credential {
@@ -176,19 +249,6 @@ const elsewhere = [
 
     .credential-note {
       text-align: right;
-    }
-  }
-
-  .off-clock {
-    font-size: var(--step-1);
-    line-height: 1.6;
-    color: var(--ink-soft);
-  }
-
-  @media (max-width: 640px) {
-    .hero-links .btn {
-      flex: 1 1 100%;
-      justify-content: center;
     }
   }
 </style>

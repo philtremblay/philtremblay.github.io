@@ -19,14 +19,15 @@ dependencies on the first task run.
 
 ## Before you change anything
 
-- **Copy rules live in [`llms.txt`](llms.txt).** The site is deliberately
-  credential-neutral and says nothing about current work. Read that first — the
-  constraints there are intentional, not gaps to fill.
+- **Copy rules live in [`CLAUDE.md`](CLAUDE.md).** The site sells a small consulting
+  practice; what it may and may not say about Dravr, about titles and about credentials
+  is constrained there for reasons that are legal as much as editorial. Read it first.
 - **Design tokens** are at the top of `src/styles/global.css`. Warm paper and ink,
   hairline rules, one clay accent, no border radius. Changing a token changes the
-  whole page; there are no per-component colours.
-- **Page content** is the `practice`, `credentials`, and `elsewhere` arrays in the
-  frontmatter of `src/pages/index.astro`. Title and meta description are in
+  whole page; there are no per-component colours. Newsreader and Plus Jakarta Sans
+  load from Google Fonts — the only external requests the page makes.
+- **Page content** is the `lead`, `alsoPractice`, `credentials`, and `elsewhere` arrays
+  in the frontmatter of `src/pages/index.astro`. Title and meta description are in
   `src/layouts/BaseLayout.astro`.
 
 Design lineage: structural cues — mono eyebrow labels, rule-separated rows, grain over
