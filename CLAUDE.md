@@ -94,6 +94,15 @@ no per-component colours, so changing a token changes the whole page.
   which was most of the page's height for none of its meaning. Rows are separated by `gap`
   alone, at roughly 3:1 against the gap inside a row. **Do not add `border-bottom` to
   `.row` or `.hero`.**
+- **Every block spans the shell — one pair of edges down the whole page.** The section
+  rules, the rows, `.hero-lede` and `.standfirst` all start and end on the same two
+  columns; verified by measuring the rendered boxes, not by reading the CSS. That puts
+  running text near 117 characters a line at desktop width, which only works because each
+  of those paragraphs is **two lines or fewer**. A paragraph that grows past two lines
+  needs its measure cap back — don't let one run long and leave it full-bleed.
+- **`.standfirst` is not the global `.prose` utility.** `.prose` caps at `--measure`;
+  `.standfirst` deliberately does not. They were one name until 2026-09-18, which made the
+  override read as an accident. Keep them apart.
 - **Rules are translucent** (`rgba(155, 165, 159, …)`) so one value reads correctly on
   every surface tier. Do not replace them with a solid hex.
 - **The accent is `--clay` `#9d4b33`, and there is exactly one.** It measures 5.24:1 on

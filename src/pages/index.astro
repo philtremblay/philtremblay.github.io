@@ -106,7 +106,7 @@ const elsewhere = [
         <span class="eyebrow">02</span>
       </div>
 
-      <p class="prose">
+      <p class="standfirst">
         Co-founder of Dravr, a multi-tenant platform written in Rust with a
         production MCP server across three transports. Two people build it,
         running the harness described above every day. Most of what is on this
@@ -145,7 +145,7 @@ const elsewhere = [
         <span class="eyebrow">04</span>
       </div>
 
-      <p class="prose">
+      <p class="standfirst">
         Racing with
         <a
           href="https://www.instagram.com/messoremclubcycliste/"
@@ -196,11 +196,18 @@ const elsewhere = [
     gap: var(--s-5);
   }
 
-  .prose {
+  /* A paragraph set to the shell, under a section rule — the same treatment as
+     .hero-lede, so every block on the page shares one pair of edges. Named
+     apart from the global .prose utility on purpose: that one caps at
+     --measure, this one deliberately does not, and a shared name would make
+     the override read as an accident. `none` beats the global
+     `p { max-width: var(--measure) }`. Both of these run two lines or fewer at
+     desktop width; a longer one would need its cap back. */
+  .standfirst {
     color: var(--ink-soft);
     font-size: var(--step-1);
     line-height: 1.6;
-    max-width: 58ch;
+    max-width: none;
   }
 
   .credential {
