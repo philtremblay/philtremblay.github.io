@@ -9,16 +9,16 @@ interface Props {
 }
 
 const {
-  title = 'Philippe Tremblay — Software Engineer',
+  title = 'Philippe Tremblay — Distributed Systems & Cloud Infrastructure',
   description =
-    'Software engineer in Montréal. Distributed systems, cloud infrastructure, and machine learning. CKA and Google Cloud certified. McGill Software Engineering.',
+    'Consulting mandates from Montréal: agent harness enablement, private and sovereign AI deployment, platform and reliability engineering, technical due diligence. A decade across Nasdaq, Metrio, Element AI and Desjardins.',
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 // Monogram favicon — squared, paper-and-ink, no emoji.
 const favicon =
-  "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231c1a16'/><text x='16' y='22' font-family='Georgia,serif' font-size='16' fill='%23f2efe9' text-anchor='middle'>PT</text></svg>";
+  "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%231a1c1b'/><text x='16' y='22' font-family='Georgia,serif' font-size='16' fill='%23f7f6f2' text-anchor='middle'>PT</text></svg>";
 ---
 
 <!doctype html>
@@ -40,6 +40,16 @@ const favicon =
 
     <link rel="canonical" href={canonicalURL} />
     <link rel="icon" href={favicon} />
+
+    <!-- Newsreader for display, Plus Jakarta Sans for body. Both carry a real
+         fallback stack in global.css, so a blocked font host degrades rather
+         than breaks. display=swap keeps first paint off the critical path. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap"
+    />
 
     <title>{title}</title>
 
